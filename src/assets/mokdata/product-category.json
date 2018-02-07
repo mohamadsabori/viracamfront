@@ -1,0 +1,17 @@
+[
+  {
+    "categoryName": "AHD",
+    "code": "AHD",
+    "id": 1
+  },
+  {
+    "categoryName": "IP",
+    "code": "IP",
+    "id": 2
+  },
+  {
+    "categoryName": "Accessories",
+    "code": "Accessories",
+    "id": 3
+  }
+]

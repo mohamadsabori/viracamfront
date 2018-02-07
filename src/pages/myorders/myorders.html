@@ -1,0 +1,29 @@
+<!--
+  Generated template for the MyordersPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>سفارشات من</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <table *ngFor="let order of orders">
+    <tr>
+      <td><b>{{ order.product.name }}</b></td>
+      <td class="color: {{order.orderStatus.code == 'START_ORDER' ? 'red' : 'yellow'}};">
+        {{ order.orderStatus.value }}</td>
+    </tr>
+    <tr>
+      <td colspan="2">قیمت <span style="color: red;">{{ order.product.cost }}</span> تومان </td>
+    </tr>
+  </table>
+</ion-content>

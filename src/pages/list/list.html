@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar>
+    <ion-item>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="finishingCart()">
+          <div *ngIf="hasProduct">
+            {{savedItems.length}}
+          </div>
+          <ion-icon  name="cart">
+          </ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-item>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>محصولات</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="text-align: right">
+  <ion-list>
+    <ion-item *ngFor="let item of items">
+      <ion-avatar item-start>
+        <img src="{{item.fileSource}}">
+      </ion-avatar>
+      <h2>{{item.title}}</h2>
+      <ul>
+        <li *ngFor="let properties  of item.properties">
+          {{properties.value}}
+        </li>
+      </ul>
+      <br/>
+      <button icon-only ion-button (click)="itemTapped($event,item)">
+        <ion-icon name="cart"></ion-icon>
+      </button>
+      <ion-item>
+        <ion-input placeholder="Text Input" [(ngModel)]="item.qty"></ion-input>
+      </ion-item>
+      <!--<button ion-item (click)="itemTapped($event,item)">-->
+    </ion-item>
+  </ion-list>
+</ion-content>

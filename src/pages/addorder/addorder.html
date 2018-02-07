@@ -1,0 +1,50 @@
+<!--
+  Generated template for the AddorderPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>ثبت سفارش</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding style="text-align: right;">
+  <ion-list>
+    <ion-item *ngFor="let item of selectedItem">
+      <ion-avatar item-start>
+        <img src="{{item.fileSource}}">
+      </ion-avatar>
+      <h2>{{item.title}}</h2>
+      <h3>{{item.qty}}</h3>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header>اطلاعات مشتری</ion-list-header>
+    <ion-item>
+      <ion-label fixed>نام کاربری</ion-label>
+      <ion-input type="text" [(ngModel)]="newOrder.userFullName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>شماره موبایل</ion-label>
+      <ion-input type="text" [(ngModel)]="newOrder.userPhoneNumber"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>آدرس</ion-label>
+      <ion-textarea type="text" [(ngModel)]="newOrder.userAddress"></ion-textarea>
+    </ion-item>
+  </ion-list>
+  <ion-item>
+    <ion-label>شیوه حمل</ion-label>
+    <ion-select [(ngModel)]="newOrder.shippingMethod" okText="انتخاب" cancelText="لغو">
+      <ion-option *ngFor="let method of shippingMethod" [value]="method.id">{{method.value}}</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <button ion-button full (click)="addOrder()" >ثبت</button>
+  </ion-item>
+</ion-content>

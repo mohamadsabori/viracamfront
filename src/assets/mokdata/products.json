@@ -1,0 +1,27 @@
+[
+  {
+    "cost": "42000",
+    "fileSource": "assets/imgs/1/HW-AD240VB-2-200x200.png",
+    "id": 1,
+    "note": "1 Mega Pixel↵3.6mm Lens↵Fiberglass Case↵LED Hidden↵UTC↵",
+    "properties": [
+      {
+        "id": 0,
+        "value": "1 Mega Pixel"
+      },
+      {
+        "id": 0,
+        "value": "2.8mm Lens"
+      },
+      {
+        "id": 0,
+        "value": "Fiberglass Case"
+      },
+      {
+        "id": 0,
+        "value": "LED Hidden"
+      }
+    ],
+    "title": "H42"
+  }
+]

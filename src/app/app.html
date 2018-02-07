@@ -1,1 +1,15 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content" side="right">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>منو</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <side-menu-content [settings]="sideMenuSettings" [options]="options" (selectOption)="selectOption($event)"></side-menu-content>
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
