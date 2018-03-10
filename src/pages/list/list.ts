@@ -43,14 +43,12 @@ export class ListPage {
             id: data.json()[i]["id"]
             ,
             // For test
-            fileSource: data.json()[i]["fileSource"] != null ? data.json()[i]["fileSource"] : ""
-/*
+            /*fileSource: data.json()[i]["fileSource"] != null ? data.json()[i]["fileSource"] : ""*/
+
+            // For release
             fileSource: data.json()[i]["fileSource"] != null ? 'http://localhost:8080/ViraCamServer/product/files?id=' + data.json()[i]["id"] +
-              '&filename=' + data.json()[i]["fileSource"] : ""
-*/
-            ,
-            properties: properties
-            ,
+              '&filename=' + data.json()[i]["fileSource"] : "",
+            properties: properties ,
             qty: null
           });
         }

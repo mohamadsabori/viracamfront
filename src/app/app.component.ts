@@ -21,7 +21,6 @@ export class MyApp {
   pages: Array<{ title: string, component: any }>;
   pakages: Array<{ title: string, component: any }> = [];
   public options: Array<MenuOptionModel>;
-  private unreadCountObservable: any = new ReplaySubject<number>(0);
 
   constructor(public platform: Platform
     , public statusBar: StatusBar

@@ -4,5 +4,10 @@
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
-  }
+  },"proxies": [
+    {
+      "path": "/ViraCam",
+      "proxyUrl": "http://176.31.82.40:8080/ViraCamServer"
+    }
+  ]
 }

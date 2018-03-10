@@ -47,18 +47,18 @@ export class ProductserviceProvider {
   }
 
   loadAllProductTypes() {
-    // return this.http.get(this.baseUrl + '/product/loadAllProductTypes');
-    return this.http.get('assets/mokdata/product-category.json');
+    return this.http.get(this.baseUrl + '/product/loadAllProductTypes');
+    // return this.http.get('assets/mokdata/product-category.json');
   }
 
   loadAllProductsByCategoryType(selectedCategory: number) {
-    // return this.http.get(this.baseUrl + '/product/loadAllProductsForClientByCategoryType/' + selectedCategory);
-    return this.http.get('assets/mokdata/products.json');
+    return this.http.get(this.baseUrl + '/product/loadAllProductsForClientByCategoryType/' + selectedCategory);
+    // return this.http.get('assets/mokdata/products.json');
   }
 
   loadAllshippingMethods() {
-    // return this.http.get(this.baseUrl + '/product/loadAllshippingMethods/');
-    return this.http.get('assets/mokdata/shippingMethods.json');
+    return this.http.get(this.baseUrl + '/product/loadAllshippingMethods/');
+    // return this.http.get('assets/mokdata/shippingMethods.json');
   }
 
   addUserOrder (userOrder: UserOrder){

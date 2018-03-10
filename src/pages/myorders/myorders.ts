@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, List, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {ProductserviceProvider} from "../../providers/productservice/productservice";
 import {ProductOrder} from "../../model/ProductOrder";
 
