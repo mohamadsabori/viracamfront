@@ -1,4 +1,4 @@
-import {Http, Headers, RequestOptions} from '@angular/http';
+import {Http, Headers} from '@angular/http';
 import {Injectable} from '@angular/core';
 import {AddOrder} from "../../model/AddOrder";
 import {UserOrder} from "../../model/UserOrder";
@@ -42,7 +42,7 @@ export class ProductserviceProvider {
     myHeaders.set('Accept', 'text/plain');
     let myParams = new URLSearchParams();
     myParams.set('userPhone', this.userPhone);
-    let options = new RequestOptions({headers: myHeaders, params: myParams});
+    // let options = new RequestOptions({headers: myHeaders, params: myParams});
     return this.http.get(this.baseUrl + '/productorder/loaduserorders/' + this.userPhone);
   }
 

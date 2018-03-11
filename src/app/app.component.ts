@@ -4,7 +4,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import {MenuOptionModel} from "../shared/side-menu-content/models/menu-option-model";
-import {ReplaySubject} from "rxjs/ReplaySubject";
 import {ProductserviceProvider} from "../providers/productservice/productservice";
 import {ListPage} from "../pages/list/list";
 import {MyordersPage} from "../pages/myorders/myorders";
