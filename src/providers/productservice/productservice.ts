@@ -13,7 +13,8 @@ import {UserOrder} from "../../model/UserOrder";
 export class ProductserviceProvider {
   private addOrderValue: AddOrder = new AddOrder();
   private userPhone: string = '09124850689';
-  public baseUrl: String = '/ViraCam';
+  // public baseUrl: String = '/ViraCam';
+  public baseUrl: String = 'http://176.31.82.40:8080/ViraCamServer';
   currentUser: { userPhoneNumber: "09124850689" };
 
   constructor(public http: Http) {
@@ -24,9 +25,9 @@ export class ProductserviceProvider {
     this.addOrderValue.productId = selectedItemId;
     this.addOrderValue.userPhoneNumber = this.userPhone;
     console.log('selectedItemId=' + selectedItemId);
-    let headersp = new Headers({
+    /*let headersp = new Headers({
       'Content-Type': 'application/json'
-    });
+    });*/
     console.log(this.addOrderValue);
     return this.http.post(this.baseUrl + '/productorder/addorder', this.addOrderValue);
     // return this.http.post(this.baseUrl + '/productorder/addorder', selectedItemId);
