@@ -12,7 +12,7 @@ export class ListPage {
   icons: string[];
   public itemCounts: string = '';
   selectedCategory: number;
-  items: Array<{ title: string, note: string, icon: string, id: number, fileSource: string, properties: Array<ProductProperties>, qty: number }>;
+  items: Array<{ cost: number, title: string, note: string, icon: string, id: number, fileSource: string, properties: Array<ProductProperties>, qty: number }>;
   savedItems: Array<{ title: string, note: string, icon: string, id: number, fileSource: string, properties: Array<ProductProperties>, qty: number }>;
   hasProduct: boolean = false;
 
@@ -49,7 +49,8 @@ export class ListPage {
             fileSource: data.json()[i]["fileSource"] != null ? 'http://176.31.82.40:8080/ViraCamServer/product/files?id=' + data.json()[i]["id"] +
               '&filename=' + data.json()[i]["fileSource"] : "",
             properties: properties ,
-            qty: null
+            qty: null,
+            cost: data.json()[i]["cost"]
           });
         }
       }

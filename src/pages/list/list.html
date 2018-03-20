@@ -24,10 +24,16 @@
       <ion-avatar item-start>
         <img src="{{item.fileSource}}">
       </ion-avatar>
-      <h2>{{item.title}}</h2>
+      <table width="100%">
+        <tr>
+          <td width="50%"><h2>{{item.title}}</h2></td>
+          <td width="25%"><h2>{{item.cost}}</h2></td>
+          <td width="25%"><span style="font-size: small">تومان</span></td>
+        </tr>
+      </table>
       <ul>
         <li *ngFor="let properties  of item.properties">
-          {{properties.value}}
+          <span style="font-size: small">{{properties.value}}</span>
         </li>
       </ul>
       <br/>
