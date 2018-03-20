@@ -21,25 +21,19 @@
 <ion-content style="text-align: right">
   <ion-list>
     <ion-item *ngFor="let item of items">
-      <ion-avatar item-start>
         <img src="{{item.fileSource}}">
-      </ion-avatar>
-      <table width="100%">
-        <tr>
-          <td width="50%"><h2>{{item.title}}</h2></td>
-          <td width="25%"><h2>{{item.cost}}</h2></td>
-          <td width="25%"><span style="font-size: small">تومان</span></td>
-        </tr>
-      </table>
       <ul>
         <li *ngFor="let properties  of item.properties">
           <span style="font-size: small">{{properties.value}}</span>
         </li>
       </ul>
-      <br/>
-      <button icon-only ion-button (click)="itemTapped($event,item)">
-        <ion-icon name="cart"></ion-icon>
-      </button>
+      <table width="100%">
+        <tr>
+          <td><button icon-only ion-button (click)="itemTapped($event,item)"><ion-icon name="cart"></ion-icon></button></td>
+          <td width="25%"><h2>{{item.cost}}</h2></td>
+          <td width="25%"><span style="font-size: small">تومان</span></td>
+        </tr>
+      </table>
       <ion-item>
         <ion-input placeholder="Text Input" [(ngModel)]="item.qty"></ion-input>
       </ion-item>
