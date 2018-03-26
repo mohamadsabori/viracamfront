@@ -20,8 +20,8 @@
 
 <ion-content style="text-align: right">
   <ion-list>
-    <ion-item *ngFor="let item of items">
-        <img src="{{item.fileSource}}">
+    <ion-item *ngFor="let item of items;let i = index;">
+        <img width="100px" src="{{item.fileSource}}">
       <ul>
         <li *ngFor="let properties  of item.properties">
           <span style="font-size: small">{{properties.value}}</span>
@@ -35,7 +35,8 @@
         </tr>
       </table>
       <ion-item>
-        <ion-input placeholder="تعداد" [(ngModel)]="item.qty"></ion-input>
+        <ion-input placeholder="تعداد" [(ngModel)]="item.qty" (change)="setOrderTotalPrice(i)"></ion-input>
+        <ion-input readonly [(ngModel)]="item.totalPrice" ></ion-input>
       </ion-item>
       <!--<button ion-item (click)="itemTapped($event,item)">-->
     </ion-item>

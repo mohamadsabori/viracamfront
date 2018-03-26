@@ -3,6 +3,7 @@ import {NavController, NavParams} from 'ionic-angular';
 import {ProductserviceProvider} from "../../providers/productservice/productservice";
 import {AddorderPage} from "../addorder/addorder";
 import {ProductProperties} from "../../model/ProductProperties";
+import {ProductItem} from "../../model/productItems";
 
 @Component({
   selector: 'page-list',
@@ -12,7 +13,7 @@ export class ListPage {
   icons: string[];
   public itemCounts: string = '';
   selectedCategory: number;
-  items: Array<{ cost: number, title: string, note: string, icon: string, id: number, fileSource: string, properties: Array<ProductProperties>, qty: number }>;
+  items: Array< ProductItem >;
   savedItems: Array<{ title: string, note: string, icon: string, id: number, fileSource: string, properties: Array<ProductProperties>, qty: number }>;
   hasProduct: boolean = false;
 
@@ -29,8 +30,12 @@ export class ListPage {
         this.hasProduct = false;
         for (let i = 0; i < data.json().length; i++) {
           let properties: Array<ProductProperties> = [];
-          for (let j = 0; j < data.json()[i]["properties"].length; j++) {
-            properties.push({id: data.json()[i]["properties"][j]["id"], value: data.json()[i]["properties"][j]["value"]});
+          if(data.json()[i]["properties"] != null && data.json()[i]["properties"].length > 0){
+            for (let j = 0; j < data.json()[i]["properties"].length; j++) {
+              properties.push({id: data.json()[i]["properties"][j]["id"], value: data.json()[i]["properties"][j]["value"]});
+            }
+          } else {
+            properties = new Array();
           }
           this.items.push({
             title: data.json()[i]["title"] != null ? data.json()[i]["title"] : ""
@@ -46,11 +51,12 @@ export class ListPage {
             /*fileSource: data.json()[i]["fileSource"] != null ? data.json()[i]["fileSource"] : ""*/
 
             // For release
-            fileSource: data.json()[i]["fileSource"] != null ? 'http://176.31.82.40:8080/ViraCamServer/product/files?id=' + data.json()[i]["id"] +
+            fileSource: data.json()[i]["fileSource"] != null ? 'http://localhost:8080/ViraCamServer/product/files?id=' + data.json()[i]["id"] +
               '&filename=' + data.json()[i]["fileSource"] : "",
-            properties: properties ,
+            properties: properties,
             qty: null,
-            cost: data.json()[i]["cost"]
+            cost: data.json()[i]["cost"],
+            totalPrice: 0
           });
         }
       }
@@ -70,5 +76,9 @@ export class ListPage {
     this.navCtrl.push(AddorderPage, {
       item: this.savedItems
     });
+  }
+
+  setOrderTotalPrice(i) {
+    this.items[i].totalPrice = this.items[i].qty * this.items[i].cost;
   }
 }

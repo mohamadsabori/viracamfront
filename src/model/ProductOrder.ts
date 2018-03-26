@@ -8,14 +8,17 @@ export class ProductOrder{
   private orderDate: String;
   private orderTime: String;
   private orderStatus: Category;
+  qty : number;
+  totalPrice : number;
 
-
-  constructor(id: number, product: Product, user: SystemUsers, orderDate: String, orderTime: String, orderStatus: Category) {
+  constructor(id: number, product: Product, user: SystemUsers, orderDate: String, orderTime: String, orderStatus: Category, qty : number, totalPrice : number) {
     this.id = id;
     this.product = product;
     this.user = user;
     this.orderDate = orderDate;
     this.orderTime = orderTime;
     this.orderStatus = orderStatus;
+    this.qty = qty;
+    this.totalPrice = totalPrice;
   }
 }

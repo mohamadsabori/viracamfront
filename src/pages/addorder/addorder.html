@@ -20,7 +20,8 @@
         <img src="{{item.fileSource}}">
       </ion-avatar>
       <h2>{{item.title}}</h2>
-      <h3>{{item.qty}}</h3>
+      <h3>تعداد {{item.qty}}</h3>
+      <h3>جمع {{item.totalPrice}}</h3>
     </ion-item>
   </ion-list>
   <ion-list>
@@ -40,7 +41,7 @@
   </ion-list>
   <ion-item>
     <ion-label>شیوه حمل</ion-label>
-    <ion-select [(ngModel)]="newOrder.shippingMethod" okText="انتخاب" cancelText="لغو">
+    <ion-select [(ngModel)]="newOrder.shippingMethod.id" okText="انتخاب" cancelText="لغو">
       <ion-option *ngFor="let method of shippingMethod" [value]="method.id">{{method.value}}</ion-option>
     </ion-select>
   </ion-item>

@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import {ProductserviceProvider} from "../../providers/productservice/productservice";
-import {ProductProperties} from "../../model/ProductProperties";
 import {Storage} from '@ionic/storage';
 import {ShippingMethod} from "../../model/ShippingMethod";
 import {UserOrder} from "../../model/UserOrder";
@@ -9,6 +8,8 @@ import {Product} from "../../model/Product";
 import {Category} from "../../model/Category";
 import {SystemUsers} from "../../model/SystemUsers";
 import {ProductOrder} from "../../model/ProductOrder";
+import {ProductItem} from "../../model/productItems";
+import {HomePage} from "../home/home";
 
 /**
  * Generated class for the AddorderPage page.
@@ -24,16 +25,21 @@ import {ProductOrder} from "../../model/ProductOrder";
 })
 export class AddorderPage {
   shippingMethod: Array<ShippingMethod>;
-  selectedItem: Array<{ title: string, note: string, icon: string, id: number, fileSource: string, properties: Array<ProductProperties>, qty: number }>;
+  selectedItem: Array<ProductItem>;
   newOrder: UserOrder;
   savedData: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private service: ProductserviceProvider, private storage: Storage, private toastCtrl: ToastController) {
     this.shippingMethod = [];
     this.selectedItem = navParams.get('item');
-    this.newOrder = new UserOrder(0, [], '', '', '', new ShippingMethod());
+    let totalFactor = 0;
+    for (var i = 0; i < this.selectedItem.length; i++) {
+      totalFactor += this.selectedItem[i].totalPrice;
+    }
+    this.newOrder = new UserOrder(0, [], '', '', '', new ShippingMethod(), totalFactor);
     for (let i = 0; i < this.selectedItem.length; i++) {
-      this.newOrder.orderset.push(new ProductOrder(0,new Product(this.selectedItem[i].id,'','','',this.selectedItem[i].properties),new SystemUsers(),'','',new Category()));
+      this.newOrder.orderset.push(new ProductOrder(0, new Product(this.selectedItem[i].id, '', '', '', this.selectedItem[i].properties), new SystemUsers(), '', '', new Category()
+        , this.selectedItem[i].qty, this.selectedItem[i].totalPrice));
       // , userFullName: '', userPhoneNumber: '',userAddress: '', shippingMethod: new ShippingMethod(), id: -1});
     }
     this.storage.get('myPhone').then((val) => {
@@ -54,7 +60,7 @@ export class AddorderPage {
   }
 
   addOrder() {
-    console.log(this.selectedItem);
+    console.log(this.newOrder);
     this.service.addUserOrder(this.newOrder).subscribe(
       data => {
         this.savedData = data.json();
@@ -64,6 +70,7 @@ export class AddorderPage {
           position: 'top'
         });
         toast.present();
+        this.navCtrl.setRoot(HomePage);
       }, error2 => {
         console.log(error2);
       }
