@@ -1,11 +1,12 @@
 import {ProductProperties} from "./ProductProperties";
+import {ProductImages} from "./ProductImages";
 export class Product{
-  private id: number;
+  public id: number;
   public name:String;
   public cost: String;
   public description: String;
   public properties: Array<ProductProperties>;
-
+public productImages: Array<ProductImages>;
 
   constructor(id: number, name: String, cost: String, description: String, properties: Array<ProductProperties>) {
     this.id = id;

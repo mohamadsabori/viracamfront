@@ -81,4 +81,8 @@ export class ListPage {
   setOrderTotalPrice(i) {
     this.items[i].totalPrice = this.items[i].qty * this.items[i].cost;
   }
+
+  searchItems(event){
+    console.log(event);
+  }
 }

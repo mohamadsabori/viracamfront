@@ -24,11 +24,6 @@ export class ProductserviceProvider {
   addOrder(selectedItemId: number) {
     this.addOrderValue.productId = selectedItemId;
     this.addOrderValue.userPhoneNumber = this.userPhone;
-    console.log('selectedItemId=' + selectedItemId);
-    /*let headersp = new Headers({
-      'Content-Type': 'application/json'
-    });*/
-    console.log(this.addOrderValue);
     return this.http.post(this.baseUrl + '/productorder/addorder', this.addOrderValue);
     // return this.http.post(this.baseUrl + '/productorder/addorder', selectedItemId);
   }
@@ -63,6 +58,7 @@ export class ProductserviceProvider {
   }
 
   addUserOrder (userOrder: UserOrder){
+    console.log(userOrder);
     return this.http.post(this.baseUrl + '/productorder/adduserorder', userOrder);
   }
 }
