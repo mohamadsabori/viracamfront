@@ -15,6 +15,9 @@
     <ion-title>محصولات</ion-title>
 
   </ion-navbar>
+</ion-header>
+<!---->
+<ion-content style="text-align: right">
   <ion-searchbar
     [(ngModel)]="myInput"
     [showCancelButton]="shouldShowCancel"
@@ -23,17 +26,21 @@
     cancelButtonText="لغو"
     cancelButtonText="جست و جو">
   </ion-searchbar>
-</ion-header>
-<!---->
-<ion-content style="text-align: right">
+
   <ion-list>
     <ion-item *ngFor="let item of items;let i = index;">
-        <img width="100px" src="{{item.fileSource}}">
-      <ul>
-        <li *ngFor="let properties  of item.properties">
-          <span style="font-size: small">{{properties.value}}</span>
-        </li>
-      </ul>
+      <table>
+        <tr>
+          <td><img width="100px" src="{{item.fileSource}}"></td>
+          <td>
+            <ul>
+              <li *ngFor="let properties  of item.properties">
+                <span style="font-size: small">{{properties.value}}</span>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </table>
       <table width="100%">
         <tr>
           <td><button icon-only ion-button (click)="itemTapped($event,item)"><ion-icon name="cart"></ion-icon></button></td>
@@ -42,7 +49,7 @@
         </tr>
       </table>
       <ion-item>
-        <ion-input placeholder="تعداد" [(ngModel)]="item.qty" (change)="setOrderTotalPrice(i)"></ion-input>
+        <ion-input type="number" placeholder="تعداد" [(ngModel)]="item.qty" (change)="setOrderTotalPrice(i)"></ion-input>
         <ion-input readonly [(ngModel)]="item.totalPrice" ></ion-input>
       </ion-item>
       <!--<button ion-item (click)="itemTapped($event,item)">-->

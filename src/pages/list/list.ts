@@ -23,8 +23,11 @@ export class ListPage {
 
     // Let's populate this page with some filler content for funzies
     this.icons = ['cart'];
+    this.initializeItems();
+  }
 
-    productservice.loadAllProductsByCategoryType(this.selectedCategory).subscribe(data => {
+  initializeItems(){
+    this.productservice.loadAllProductsByCategoryType(this.selectedCategory).subscribe(data => {
         this.items = [];
         this.savedItems = [];
         this.hasProduct = false;
@@ -51,7 +54,7 @@ export class ListPage {
             /*fileSource: data.json()[i]["fileSource"] != null ? data.json()[i]["fileSource"] : ""*/
 
             // For release
-            fileSource: data.json()[i]["fileSource"] != null ? 'http://localhost:8080/ViraCamServer/product/files?id=' + data.json()[i]["id"] +
+            fileSource: data.json()[i]["fileSource"] != null ? 'http://176.31.82.40:8080/ViraCamServer/product/files?id=' + data.json()[i]["id"] +
               '&filename=' + data.json()[i]["fileSource"] : "",
             properties: properties,
             qty: null,
@@ -61,6 +64,7 @@ export class ListPage {
         }
       }
     );
+
   }
 
   itemTapped(event, item) {
@@ -83,6 +87,14 @@ export class ListPage {
   }
 
   searchItems(event){
-    console.log(event);
+    let val = event.target.value;
+    if (val && val.trim() != '') {
+      this.items = this.items.filter((item) => {
+        return (item.title.toLowerCase().indexOf(val.toLowerCase()) > -1
+        || item.properties.filter((property) => {
+          return (property.value.toLocaleLowerCase().indexOf(val.toLowerCase())) > -1
+          }));
+      })
+    }
   }
 }
