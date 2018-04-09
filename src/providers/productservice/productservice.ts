@@ -15,7 +15,7 @@ export class ProductserviceProvider {
   private userPhone: string = '09124850689';
   // public baseUrl: String = '/ViraCam';
   public baseUrl: String = 'http://176.31.82.40:8080/ViraCamServer';
-  currentUser: { userPhoneNumber: "09124850689" };
+  currentUser: { userPhoneNumber: "" };
 
   constructor(public http: Http, private storage: Storage) {
     console.log('Hello ProductserviceProvider Provider');
@@ -39,7 +39,11 @@ export class ProductserviceProvider {
     let myParams = new URLSearchParams();
     myParams.set('userPhone', this.userPhone);
     // let options = new RequestOptions({headers: myHeaders, params: myParams});
+    this.storage.get('myPhone').then((val) => {
+      this.userPhone = val;
+    });
     return this.http.get(this.baseUrl + '/productorder/loaduserorders/' + this.userPhone);
+
   }
 
   loadAllProductTypes() {
