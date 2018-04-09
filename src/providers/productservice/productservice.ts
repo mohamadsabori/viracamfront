@@ -2,7 +2,7 @@ import {Http, Headers} from '@angular/http';
 import {Injectable} from '@angular/core';
 import {AddOrder} from "../../model/AddOrder";
 import {UserOrder} from "../../model/UserOrder";
-
+import { Storage } from '@ionic/storage';
 /*
  Generated class for the ProductserviceProvider provider.
 
@@ -17,7 +17,7 @@ export class ProductserviceProvider {
   public baseUrl: String = 'http://176.31.82.40:8080/ViraCamServer';
   currentUser: { userPhoneNumber: "09124850689" };
 
-  constructor(public http: Http) {
+  constructor(public http: Http, private storage: Storage) {
     console.log('Hello ProductserviceProvider Provider');
   }
 
@@ -58,6 +58,9 @@ export class ProductserviceProvider {
   }
 
   addUserOrder (userOrder: UserOrder){
+    this.storage.set('myPhone',userOrder.userPhoneNumber);
+    this.storage.set('myAddress',userOrder.userAddress);
+    this.userPhone = userOrder.userPhoneNumber;
     console.log(userOrder);
     return this.http.post(this.baseUrl + '/productorder/adduserorder', userOrder);
   }
