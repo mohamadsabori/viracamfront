@@ -32,11 +32,11 @@ export class AddorderPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private service: ProductserviceProvider, private storage: Storage, private toastCtrl: ToastController) {
     this.shippingMethod = [];
     this.selectedItem = navParams.get('item');
-    let totalFactor = 0;
+    let totalFactor: number = 0;
     for (var i = 0; i < this.selectedItem.length; i++) {
-      totalFactor += this.selectedItem[i].totalPrice;
+      totalFactor = totalFactor + this.selectedItem[i].totalPrice;
     }
-    this.newOrder = new UserOrder(0, [], '', '', '', new ShippingMethod(), totalFactor);
+    this.newOrder = new UserOrder(0, [], '', '', '', new ShippingMethod(), totalFactor, '', '', new Category(), '', '');
     for (let i = 0; i < this.selectedItem.length; i++) {
       this.newOrder.orderset.push(new ProductOrder(0, new Product(this.selectedItem[i].id, '', '', '', this.selectedItem[i].properties), new SystemUsers(), '', '', new Category()
         , this.selectedItem[i].qty, this.selectedItem[i].totalPrice));
@@ -79,6 +79,10 @@ export class AddorderPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddorderPage');
+  }
+
+  deleteThisRow(key: any){
+    this.selectedItem.splice(key, 1);
   }
 
 }

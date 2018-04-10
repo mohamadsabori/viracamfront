@@ -57,9 +57,9 @@ export class ListPage {
             fileSource: data.json()[i]["fileSource"] != null ? 'http://176.31.82.40:8080/ViraCamServer/product/files?id=' + data.json()[i]["id"] +
               '&filename=' + data.json()[i]["fileSource"] : "",
             properties: properties,
-            qty: null,
+            qty: 1,
             cost: data.json()[i]["cost"],
-            totalPrice: 0
+            totalPrice: data.json()[i]["cost"]
           });
         }
       }

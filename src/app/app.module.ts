@@ -14,6 +14,7 @@ import {MyinfoPage} from "../pages/myinfo/myinfo";
 import {SideMenuContentComponent} from "../shared/side-menu-content/side-menu-content.component";
 import {IonicStorageModule} from "@ionic/storage";
 import {ProductserviceProvider} from "../providers/productservice/productservice";
+import {FactordetailsPage} from "../pages/factordetails/factordetails";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {ProductserviceProvider} from "../providers/productservice/productservice
     AddorderPage,
     MyordersPage,
     MyinfoPage,
-    SideMenuContentComponent
+    SideMenuContentComponent,
+    FactordetailsPage
   ],
   imports: [
     HttpModule,
@@ -41,7 +43,8 @@ import {ProductserviceProvider} from "../providers/productservice/productservice
     ListPage,
     AddorderPage,
     MyordersPage,
-    MyinfoPage
+    MyinfoPage,
+    FactordetailsPage
   ],
   providers: [
     StatusBar,

@@ -19,23 +19,27 @@
   <table width="100%">
     <thead>
     <tr>
-      <td colspan="2">شرح</td>
-      <td>تعداد</td>
-      <td>قیمت</td>
+      <td>شماره </td>
+      <td>تاریخ </td>
+      <td>بهای کل </td>
       <td>وضعیت</td>
+      <td></td>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let order of orders">
       <td>
-        <img width="50px" src="{{ order.product.productImages.length > 0
-          ? 'http://176.31.82.40:8080/ViraCamServer/product/files?id=' + order.product.id + '&filename=' + order.product.productImages[0].filename : '' }}">
+        {{order.orderSerial}}
       </td>
-      <td><b>{{ order.product.name }}</b></td>
-      <td>{{ order.qty }}</td>
-      <td><span class="productCost">{{ order.product.cost }}</span></td>
-      <td style="color: {{order.orderStatus.code == 'START_ORDER' ? 'red' : 'yellow'}};">
-        {{ order.orderStatus.value }}
+      <td>
+        {{order.orderDate}}
+      </td>
+      <td>{{ order.totalFactor }}</td>
+      <td>
+        {{order.orderStatus.value}}
+      </td>
+      <td>
+        <button ion-button round outline (click)="openFactorDetails(order)">جزییات</button>
       </td>
     </tr>
     </tbody>

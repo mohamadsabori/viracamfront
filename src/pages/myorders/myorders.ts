@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {ProductserviceProvider} from "../../providers/productservice/productservice";
-import {ProductOrder} from "../../model/ProductOrder";
+import {UserOrder} from "../../model/UserOrder";
+import {FactordetailsPage} from "../factordetails/factordetails";
 
 /**
  * Generated class for the MyordersPage page.
@@ -16,7 +17,7 @@ import {ProductOrder} from "../../model/ProductOrder";
   templateUrl: 'myorders.html',
 })
 export class MyordersPage {
-  orders: Array<ProductOrder>;
+  orders: Array<UserOrder>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private service: ProductserviceProvider) {
 
@@ -31,4 +32,7 @@ export class MyordersPage {
       });
   }
 
+  openFactorDetails(userOrder: UserOrder) {
+    this.navCtrl.push(FactordetailsPage, {"item": userOrder});
+  }
 }
