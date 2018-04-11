@@ -25,13 +25,15 @@ import {HomePage} from "../home/home";
 })
 export class AddorderPage {
   shippingMethod: Array<ShippingMethod>;
-  selectedItem: Array<ProductItem>;
+  selectedItem: Array<ProductItem> = [];
   newOrder: UserOrder;
   savedData: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private service: ProductserviceProvider, private storage: Storage, private toastCtrl: ToastController) {
     this.shippingMethod = [];
-    this.selectedItem = navParams.get('item');
+    for(let i = 0; i <navParams.get('item').length; i++){
+      this.selectedItem.push(navParams.get('item')[i]);
+    }
     let totalFactor: number = 0;
     for (var i = 0; i < this.selectedItem.length; i++) {
       totalFactor = totalFactor + this.selectedItem[i].totalPrice;
@@ -60,7 +62,9 @@ export class AddorderPage {
   }
 
   addOrder() {
-    console.log(this.newOrder);
+    this.storage.set('myPhone',this.newOrder.userPhoneNumber);
+    this.storage.set('myAddress',this.newOrder.userAddress);
+    this.storage.set('myUserName',this.newOrder.userFullName);
     this.service.addUserOrder(this.newOrder).subscribe(
       data => {
         this.savedData = data.json();
@@ -78,11 +82,15 @@ export class AddorderPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AddorderPage');
   }
 
   deleteThisRow(key: any){
     this.selectedItem.splice(key, 1);
+  }
+
+  setOrderTotalPrice(i: any) {
+    console.log("Item index is " + i);
+    this.selectedItem[i].totalPrice = this.selectedItem[i].qty * this.selectedItem[i].cost;
   }
 
 }

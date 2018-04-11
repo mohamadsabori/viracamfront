@@ -49,7 +49,7 @@
         </tr>
       </table>
       <ion-item>
-        <ion-input type="number" placeholder="تعداد" [(ngModel)]="item.qty" (change)="setOrderTotalPrice(i)"></ion-input>
+        <ion-input type="number" placeholder="تعداد" min="0" [(ngModel)]="item.qty" (change)="setOrderTotalPrice(i)"></ion-input>
         <ion-input readonly [(ngModel)]="item.totalPrice" ></ion-input>
       </ion-item>
       <!--<button ion-item (click)="itemTapped($event,item)">-->
