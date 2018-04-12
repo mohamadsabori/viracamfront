@@ -48,24 +48,17 @@
       </td>
     </tr>
   </table>-->
-  <ion-list *ngFor="let item of selectedItem">
-    <ion-item>
-      <ion-thumbnail item-start>
-        <img src="{{item.fileSource}}">
-      </ion-thumbnail>
-      <h2>{{item.title}}</h2>
-      <p>تعداد {{item.qty}}</p>
-      <p>جمع {{item.totalPrice}}</p>
-      <button ion-button icon-only (click)="deleteThisRow(i)">
-        <ion-icon name="close"></ion-icon>
+  <ion-list >
+    <ion-list-header>لیست سفارش</ion-list-header>
+    <ion-item *ngFor="let item of selectedItem;let i = index;">
+      <ion-img icon-only src="{{item.fileSource}}"></ion-img>
+      <ion-label item-start>{{item.title}}</ion-label>
+      <ion-input item-start type="number" [(ngModel)]="item.qty" (change)="setOrderTotalPrice(i)" min="0"></ion-input>
+      <ion-label item-end>{{item.totalPrice}}</ion-label>
+      <button ion-button icon-only item-end (click)="deleteThisRow(i)">
+        <ion-icon color="primary" name="close"></ion-icon>
       </button>
     </ion-item>
-    <!--<ion-item>
-    </ion-item>
-    <ion-item></ion-item>
-    <ion-item></ion-item>
-    <ion-item>
-    </ion-item>-->
   </ion-list>
   <ion-list>
     <ion-list-header>اطلاعات مشتری</ion-list-header>
@@ -89,7 +82,7 @@
     </ion-select>
   </ion-item>
   <ion-item>
-    <ion-label fixed>آدرس محل</ion-label>
+    <ion-label fixed>نام باربری/ترمینال</ion-label>
     <ion-textarea type="text" [(ngModel)]="newOrder.shippingMethodDetails"></ion-textarea>
   </ion-item>
   <ion-item>

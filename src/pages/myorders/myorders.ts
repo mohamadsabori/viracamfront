@@ -3,6 +3,7 @@ import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {ProductserviceProvider} from "../../providers/productservice/productservice";
 import {UserOrder} from "../../model/UserOrder";
 import {FactordetailsPage} from "../factordetails/factordetails";
+import {Storage} from '@ionic/storage';
 
 /**
  * Generated class for the MyordersPage page.
@@ -19,17 +20,19 @@ import {FactordetailsPage} from "../factordetails/factordetails";
 export class MyordersPage {
   orders: Array<UserOrder>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private service: ProductserviceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private service: ProductserviceProvider, private storage: Storage) {
 
   }
 
   ionViewDidLoad() {
-    this.service.loadMyOrders().subscribe(
-      data => {
-        this.orders = data.json();
-      }, error => {
-        console.log(error);
-      });
+    this.storage.get('myPhone').then((val) => {
+      this.service.loadMyOrders(val).subscribe(
+        data => {
+          this.orders = data.json();
+        }, error => {
+          console.log(error);
+        });
+    });
   }
 
   openFactorDetails(userOrder: UserOrder) {
