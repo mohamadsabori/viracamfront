@@ -21,7 +21,7 @@ export class FactordetailsPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad FactordetailsPage');
+
   }
 
 }

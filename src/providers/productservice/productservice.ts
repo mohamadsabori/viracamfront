@@ -13,8 +13,8 @@ import { Storage } from '@ionic/storage';
 export class ProductserviceProvider {
   private addOrderValue: AddOrder = new AddOrder();
   private userPhone: string = '09124850689';
-  public baseUrl: String = '/ViraCam';
-  // public baseUrl: String = 'http://176.31.82.40:8080/ViraCamServer';
+  // public baseUrl: String = '/ViraCam';
+  public baseUrl: String = 'http://176.31.82.40:8080/ViraCamServer';
   currentUser: { userPhoneNumber: "" };
 
   constructor(public http: Http, private storage: Storage) {
