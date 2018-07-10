@@ -54,7 +54,7 @@ export class ListPage {
             /*fileSource: data.json()[i]["fileSource"] != null ? data.json()[i]["fileSource"] : ""*/
 
             // For release
-            fileSource: data.json()[i]["fileSource"] != null ? 'http://localhost:8080/ViraCamServer/product/files?id=' + data.json()[i]["id"] +
+            fileSource: data.json()[i]["fileSource"] != null ? 'http://176.31.82.40:8080/ViraCamServer/product/files?id=' + data.json()[i]["id"] +
               '&filename=' + data.json()[i]["fileSource"] : "",
             properties: properties,
             qty: 1,
