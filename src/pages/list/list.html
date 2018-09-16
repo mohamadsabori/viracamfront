@@ -26,33 +26,21 @@
     cancelButtonText="لغو"
     cancelButtonText="جست و جو">
   </ion-searchbar>
-
-  <ion-list>
-    <ion-item *ngFor="let item of items;let i = index;">
-      <table>
-        <tr>
-          <td><img width="100px" src="{{item.fileSource}}"></td>
-          <td>
-            <ul>
-              <li *ngFor="let properties  of item.properties">
-                <span style="font-size: small">{{properties.value}}</span>
-              </li>
-            </ul>
-          </td>
-        </tr>
-      </table>
-      <table width="100%">
-        <tr>
-          <td><button icon-only ion-button (click)="itemTapped($event,item)"><ion-icon name="cart"></ion-icon></button></td>
-          <td width="25%"><h2>{{item.cost}}</h2></td>
-          <td width="25%"><span style="font-size: small">تومان</span></td>
-        </tr>
-      </table>
-      <ion-item>
-        <ion-input type="number" placeholder="تعداد" min="0" [(ngModel)]="item.qty" (change)="setOrderTotalPrice(i)"></ion-input>
-        <ion-input readonly [(ngModel)]="item.totalPrice" ></ion-input>
-      </ion-item>
-      <!--<button ion-item (click)="itemTapped($event,item)">-->
-    </ion-item>
-  </ion-list>
+  <div class="product-items">
+    <div class="product-item" *ngFor="let item of items;let i = index;">
+      <div class="product product-image">
+        <img src="{{item.fileSource}}" />
+      </div>
+      <div class="product product-info">
+        <h4 class="product-title">{{item.title}}</h4>
+        <p *ngFor="let properties  of item.properties">{{properties.value}}</p>
+      </div>
+      <div class="product product-price">
+        <h4 class="price-title">{{item.cost}}</h4>
+        <p>
+          <a href="#">اضافه به سبد خرید</a>
+        </p>
+      </div>
+    </div>
+  </div>
 </ion-content>
