@@ -15,6 +15,11 @@ import {SideMenuContentComponent} from "../shared/side-menu-content/side-menu-co
 import {IonicStorageModule} from "@ionic/storage";
 import {ProductserviceProvider} from "../providers/productservice/productservice";
 import {FactordetailsPage} from "../pages/factordetails/factordetails";
+import {HelpPage} from "../pages/help/help";
+import {AngularFontAwesomeModule} from "angular-font-awesome";
+import {CustomerInfoPage} from "../pages/customer-info/customer-info";
+import {MyListPage} from "../pages/my-list/my-list";
+import {ShoppingPage} from "../pages/shopping/shopping";
 
 @NgModule({
   declarations: [
@@ -25,7 +30,11 @@ import {FactordetailsPage} from "../pages/factordetails/factordetails";
     MyordersPage,
     MyinfoPage,
     SideMenuContentComponent,
-    FactordetailsPage
+    FactordetailsPage,
+    HelpPage,
+    CustomerInfoPage,
+    MyListPage,
+    ShoppingPage
   ],
   imports: [
     HttpModule,
@@ -34,7 +43,8 @@ import {FactordetailsPage} from "../pages/factordetails/factordetails";
     IonicStorageModule.forRoot({
       name: '__mydb',
       driverOrder: ['indexeddb', 'sqlite', 'websql']
-    })
+    }),
+    AngularFontAwesomeModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -44,7 +54,11 @@ import {FactordetailsPage} from "../pages/factordetails/factordetails";
     AddorderPage,
     MyordersPage,
     MyinfoPage,
-    FactordetailsPage
+    FactordetailsPage,
+    HelpPage,
+    CustomerInfoPage,
+    MyListPage,
+    ShoppingPage
   ],
   providers: [
     StatusBar,

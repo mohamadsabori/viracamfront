@@ -13,8 +13,7 @@
 </ion-header>
 
 
-<ion-content padding>
-  <ion-content padding style="text-align: right;">
+<ion-content padding style="text-align: right;">
     <ion-list *ngFor="let item of newOrder.orderset">
       <ion-item>
         <ion-thumbnail item-start>
@@ -49,5 +48,7 @@
       <ion-label fixed>آدرس محل</ion-label>
       <ion-textarea [disabled]="true" type="text" [(ngModel)]="newOrder.shippingMethodDetails"></ion-textarea>
     </ion-item>
-  </ion-content>
+    <ion-item>
+      <button ion-button full color="danger" (click)="presentConfirm(newOrder.id)">حذف سفارش</button>
+    </ion-item>
 </ion-content>

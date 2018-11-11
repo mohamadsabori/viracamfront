@@ -12,12 +12,11 @@ import {UserOrder} from "../../model/UserOrder";
 export class ProductserviceProvider {
   private addOrderValue: AddOrder = new AddOrder();
   private userPhone: string = '09124850689';
-  // public baseUrl: String = '/ViraCam';
-  public baseUrl: String = 'http://176.31.82.40:8080/ViraCamServer';
+  public baseUrl: String = '/ViraCam';
+  // public baseUrl: String = 'http://176.31.82.40:8080/ViraCamServer';
   currentUser: { userPhoneNumber: "" };
 
   constructor(public http: Http) {
-    console.log('Hello ProductserviceProvider Provider');
   }
 
   addOrder(selectedItemId: number) {
@@ -62,7 +61,10 @@ export class ProductserviceProvider {
 
   addUserOrder (userOrder: UserOrder){
     this.userPhone = userOrder.userPhoneNumber;
-    console.log(userOrder);
     return this.http.post(this.baseUrl + '/productorder/adduserorder', userOrder);
+  }
+
+  cancelUserOrder (id: any){
+    return this.http.post(this.baseUrl + '/userorder/cancelOrder', id);
   }
 }

@@ -36,7 +36,7 @@
       </td>
       <td>{{ order.totalFactor }}</td>
       <td>
-        {{order.orderStatus.value}}
+        {{order.orderStatus != null ? order.orderStatus.value : ''}}
       </td>
       <td>
         <button ion-button round outline (click)="openFactorDetails(order)">جزییات</button>

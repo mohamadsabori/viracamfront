@@ -2,11 +2,23 @@
 // In this example, we have used the following name
 // for the selected option in the settings object:
 // selectedOptionClass: 'active-side-menu-option'
+@import "../assets/scss/fontawesome.scss";
+@import "../assets/scss/solid.scss";
+@import "../assets/scss/brands.scss";
 
-$active-color: map-get($colors, primary);
+.user {
+  @extend %fa-icon;
+  @extend .fas;
+
+  &:before {
+    content: fa-content($fa-var-user);
+  }
+}
+
+$active-color: #3D9BDD;
 $font-color: #222;
 $background-light-color: #fff;
-$background-dark-color: #eee;
+$background-dark-color: #3D9BDD;
 
 // Single option
 // ------------------
@@ -23,26 +35,36 @@ ion-item.item.item-block.option {
 // Header
 // ------------------
 ion-item.item.item-block.header {
-  background-color: $background-dark-color;
+  background-color: $toolbar-background;
   color: $font-color;
 
   &.active-side-menu-option {
     color: $active-color;
-    font-weight: 700;
+    font-weight: 900;
   }
 }
 
 // Sub option
 // ------------------
 ion-item.item.item-block.sub-option {
-  background-color: $background-light-color;
+  background-color: $toolbar-background;
   color: $font-color;
 
   &.active-side-menu-option {
     color: $active-color;
-    font-weight: 700;
+    font-weight: 900;
   }
 }
+
+/*.bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default{
+  //color: green;
+}
+.header-ios .toolbar-ios:last-child .toolbar-background-ios{
+  color: green;
+}
+.toolbar-background-ios{
+  background-color: green;
+}*/
 
 // App Global Sass
 // --------------------------------------------------
@@ -57,3 +79,37 @@ ion-item.item.item-block.sub-option {
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+@font-face {
+  font-family: 'BYekan';
+  src: url('../assets/fonts/BYekan.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+}
+.header-icon-left {
+  display: inline;
+  font-size: 30px;
+  margin-left: 10px;
+  /*direction: ltr;*/
+}
+.header-icon-right {
+  display: inline;
+  font-size: 30px;
+  margin-right: 5px;
+  direction: rtl;
+}
+.header {
+  height: 70px;
+  background: linear-gradient(135deg, rgba(76, 179, 133, 1) 15%, rgba(23, 142, 79, 1)100%);
+  padding-top:15px;
+}
+.header .row {
+  margin-right: 0;
+  right:0;
+  position:relative;
+  color:#fff;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family:BYekan;
+}

@@ -28,6 +28,7 @@ export class MyordersPage {
     this.storage.get('myPhone').then((val) => {
       this.service.loadMyOrders(val).subscribe(
         data => {
+          console.log(data.json());
           this.orders = data.json();
         }, error => {
           console.log(error);

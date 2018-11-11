@@ -23,7 +23,6 @@ export class LoginService {
       headers: this.getHeaders()
       // body: JSON.stringify(data)
     });
-    console.log("Calling login service");
     return this._http.post(this.baseUrl + '/login', data, requestoptions)
       .map(res => res.json());
 /*
@@ -46,7 +45,6 @@ export class LoginService {
     var requestoptions = new RequestOptions({
       headers: this.getHeaders()
     });
-    console.log("Calling register service");
     return this._http.post(this.baseUrl + '/register', data, requestoptions)
       .map(res => res.json());
   }

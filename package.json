@@ -56,5 +56,9 @@
       "ios",
       "android"
     ]
+  },
+  "config": {
+    "ionic_sass": "./sass.config.js",
+    "ionic_copy": "./copy.config.js"
   }
 }

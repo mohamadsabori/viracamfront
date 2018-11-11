@@ -71,6 +71,8 @@ export class ListPage {
     // console.log('value is=' + document.getElementById(item.id).value);
     // item.qty = this.itemCounts;
     // this.itemCounts = '';
+    item.qty = 1;
+    item.totalPrice = 1 * item.cost;
     this.savedItems.push(item);
     // document.getElementById(item.id) = "";
     this.hasProduct = true;

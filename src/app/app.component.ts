@@ -9,6 +9,8 @@ import {ListPage} from "../pages/list/list";
 import {MyordersPage} from "../pages/myorders/myorders";
 import {MyinfoPage} from "../pages/myinfo/myinfo";
 import {SideMenuSettings} from "../shared/side-menu-content/models/side-menu-settings";
+import {CustomerInfoPage} from "../pages/customer-info/customer-info";
+import {MyListPage} from "../pages/my-list/my-list";
 @Component({
   templateUrl: 'app.html'
 })
@@ -38,11 +40,11 @@ export class MyApp {
           displayName: 'محصولات',
           subItems: productTypes}
         , {displayName: 'صفحه اصلی', component: HomePage}
-        , {displayName: 'سفارش های من', component: MyordersPage}
-        , {displayName: 'اطلاعات من', component: MyinfoPage}
+        , {displayName: 'سفارش های من', component: MyListPage}
+        , {displayName: 'اطلاعات من', component: CustomerInfoPage}
       );
     }, error => {
-      console.log(error)
+      console.log(error);
     });
   }
 
@@ -91,7 +93,6 @@ export class MyApp {
       } else {
         // Redirect to the selected page
         if(option.component == ListPage){
-          console.log(option.parameter);
           this.nav.push(option.component, {selectedCategory : option.parameter});
         } else{
           if (option.component === HomePage) {

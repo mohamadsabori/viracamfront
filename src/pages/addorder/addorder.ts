@@ -89,7 +89,6 @@ export class AddorderPage {
   }
 
   setOrderTotalPrice(i: any) {
-    console.log("Item index is " + i);
     this.selectedItem[i].totalPrice = this.selectedItem[i].qty * this.selectedItem[i].cost;
   }
 

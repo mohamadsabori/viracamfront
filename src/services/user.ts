@@ -30,7 +30,6 @@ export class UserService {
   }
 
   set name(value: string) {
-    console.log('Set name=' + value);
     this._name = value;
   }
 
@@ -39,7 +38,6 @@ export class UserService {
   }
 
   set age(value: number) {
-    console.log('Set age=' + value);
     this._age = value;
   }
 

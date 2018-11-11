@@ -1,20 +1,37 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>
-      ViraCam
-      <img src="assets/imgs/log (1).png" id="logo">
-    </ion-title>
-  </ion-navbar>
+  <header class="header">
+    <div class="row">
+      <!--<div class="col-md-4 col-sm-4 col-xs-4">
+        <ion-navbar>
+          <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+        </ion-navbar>
+      </div>-->
+      <div class="header-icon-right pull-right">
+        <div class="header-icon-right">
+          <i class="fa fa-bars" menuToggle></i>
+        </div>
+        <div class="header-icon-right">
+          <img src="../../assets/images/logo.png" class="logo img-responsive" />
+        </div>
+      </div>
+      <div class="header-icon-left pull-left">
+        <div class="header-icon-left">
+          <i class="fa fa-search"></i>
+        </div>
+        <div class="header-icon-left">
+          <i class="fa fa-shopping-cart"></i>
+        </div>
+      </div>
+    </div>
+  </header>
 </ion-header>
 
 <ion-content padding>
-  <!--<img src="assets/imgs/log (1).png" width="100%">-->
   <div class="container">
     <div class="row">
-      <div class="full-box">
+      <div class="full-box" (click)="openIpCamera($event,ipCameraId)">
         <div class="box boxIP">
           <!--<ion-icon name="megaphone" class="icon"></ion-icon>-->
           <img src="assets/imgs/APPIcons/IPCamera.png" id="ipcam-img">
@@ -31,7 +48,7 @@
     <div class="row">
       <div class="full-box">
         <div class="box twoBoxes">
-          <div class="boxAccessories">
+          <div class="boxAccessories" (click)="openAccessoriesId($event,ipCameraId)">
             <!--<ion-icon name="megaphone" class="icon"></ion-icon>-->
             <img src="assets/imgs/APPIcons/Accessories.png" id="acc-img">
             <p>قطعات جانبی</p>
@@ -42,7 +59,7 @@
             <p>دزدگیر</p>
           </div>
         </div>
-        <div class="box boxAHD">
+        <div class="box boxAHD" (click)="openAhdCamera($event,ipCameraId)">
           <!--<ion-icon name="megaphone" class="icon"></ion-icon>-->
           <img src="assets/imgs/APPIcons/AHDCCTV.png" id="ahd-img">
           <p>دوربین های AHD</p>
@@ -52,7 +69,7 @@
     </div>
     <div class="row">
       <div class="full-box">
-        <div class="box boxPost">
+        <div class="box boxPost" (click)="openMyOrder($event)">
           <!--<ion-icon name="megaphone" class="icon"></ion-icon>-->
           <img src="assets/imgs/APPIcons/post.png" id="post-img">
           <p>پیگیری مرسولات</p>
@@ -71,7 +88,7 @@
           <img src="assets/imgs/APPIcons/Education.png" id="edu-img">
           <p>آموزش</p>
         </div>
-        <div class="box boxAbout">
+        <div class="box boxAbout" (click)="openHelpPage($event)">
           <!--<ion-icon name="megaphone" class="icon"></ion-icon>-->
           <img src="assets/imgs/APPIcons/AboutContact.png" id="about-img">
           <p>درباره ما و تماس با ما</p>
