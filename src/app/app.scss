@@ -1,4 +1,7 @@
 // http://ionicframework.com/docs/theming/
+@import "../assets/scss/fontawesome.scss";
+@import "../assets/scss/solid.scss";
+@import "../assets/scss/brands.scss";
 
 
 // App Global Sass
@@ -14,3 +17,37 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+@font-face {
+  font-family: 'BYekan';
+  src: url('../assets/fonts/BYekan.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family:BYekan;
+}
+ion-app.ios {
+  font-family:BYekan;
+}
+ion-app.android {
+  font-family:BYekan;
+}
+
+$active-color: #3D9BDD;
+$font-color: #222;
+$background-light-color: linear-gradient(135deg, rgba(76, 179, 133, 1) 15%, rgba(23, 142, 79, 1)100%);
+$background-dark-color: #3D9BDD;
+
+// Single option
+// ------------------
+ion-item.item.item-block.option {
+  background-color: $background-light-color;
+  color: $font-color;
+
+  &.active-side-menu-option {
+    color: $active-color;
+    font-weight: 700;
+  }
+}

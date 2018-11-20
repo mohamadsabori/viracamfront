@@ -1,0 +1,67 @@
+<!--
+  Generated template for the CustomerInfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar>
+    <button ion-button menuToggle left>
+      <ion-icon name="menu"></ion-icon>
+      <img src="assets/Images/logo.png" class="logo" style="width: 48px;"/>
+    </button>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon class="fa fa-search"></ion-icon>
+      </button>
+      <button ion-button icon-only>
+        <ion-icon class="fa fa-shopping-cart"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div class="form-group">
+      <fieldset>
+        <legend>مشخصات من</legend>
+        <div class="row">
+          <!--<label class="col-sm-2 control-label" for="form-group-input"></label>-->
+          <div class="col-sm-12">
+            <input type="text" class="form-control" id="form-group-input" [(ngModel)]="userFullName" placeholder="نام و نام خانوادگی">
+          </div>
+          <label class="col-sm-2 control-label" for="form-group-input"></label>
+          <div class="col-sm-12">
+            <ion-input type="text" class="form-control" [(ngModel)]="myPhone" placeholder="شماره موبایل (ثبت شده هنگام ورود)"></ion-input>
+          </div>
+          <label class="col-sm-2 control-label" for="form-group-input"></label>
+          <div class="col-sm-12">
+            <select class="form-control">
+              <option value="">استان</option>
+              <option>تهران</option>
+              <option>البرز</option>
+              <option>فارس</option>
+            </select>
+          </div>
+          <label class="col-sm-2 control-label" for="form-group-input"></label>
+          <div class="col-sm-12">
+            <select class="form-control">
+              <option value="">شهر</option>
+              <option>تهران</option>
+              <option>کرج</option>
+              <option>شیراز</option>
+            </select>
+          </div>
+          <label class="col-sm-2 control-label" for="form-group-input"></label>
+          <div class="col-sm-12">
+            <textarea class="form-control" placeholder="آدرس پستی" [(ngModel)]="myAddress" rows="5"></textarea>
+          </div>
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <button class="btn btn-danger center-block" (click)="saveUserInfo()">ثبت</button>
+          </div>
+        </div>
+      </fieldset>
+  </div>
+</ion-content>

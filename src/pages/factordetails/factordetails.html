@@ -1,0 +1,54 @@
+<!--
+  Generated template for the FactordetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>فاکتور {{newOrder.orderSerial}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding style="text-align: right;">
+    <ion-list *ngFor="let item of newOrder.orderset">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="{{ item.product.productImages.length !=0 ? 'http://176.31.82.40:8080/ViraCamServer/product/files?id=' + item.product.id +
+          '&filename=' + item.product.productImages[0].filename : '' }}">
+        </ion-thumbnail>
+        <h2>{{item.product.name}}</h2>
+        <p>تعداد {{item.qty}}</p>
+        <p>جمع {{item.totalPrice}}</p>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-list-header>اطلاعات مشتری</ion-list-header>
+      <ion-item>
+        <ion-label fixed>نام کاربری</ion-label>
+        <ion-input [disabled]="true" type="text" [(ngModel)]="newOrder.userFullName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>شماره موبایل</ion-label>
+        <ion-input [disabled]="true" type="text" [(ngModel)]="newOrder.userPhoneNumber"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>آدرس</ion-label>
+        <ion-textarea [disabled]="true" type="text" [(ngModel)]="newOrder.userAddress"></ion-textarea>
+      </ion-item>
+    </ion-list>
+    <ion-item>
+      <ion-label>شیوه حمل</ion-label>
+      <ion-input [disabled]="true" type="text" [(ngModel)]="newOrder.shippingMethod.value"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>آدرس محل</ion-label>
+      <ion-textarea [disabled]="true" type="text" [(ngModel)]="newOrder.shippingMethodDetails"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <button ion-button full color="danger" (click)="presentConfirm(newOrder.id)">حذف سفارش</button>
+    </ion-item>
+</ion-content>

@@ -1,0 +1,27 @@
+[
+  {
+    "code": "PEYK",
+    "id": 1,
+    "value": "پیک"
+  },
+  {
+    "code": "TIPAKS",
+    "id": 2,
+    "value": "تیپاکس"
+  },
+  {
+    "code": "BARBARY",
+    "id": 3,
+    "value": "باربری"
+  },
+  {
+    "code": "FOROSHGAH",
+    "id": 4,
+    "value": "فروشگاه"
+  },
+  {
+    "code": "POST",
+    "id": 5,
+    "value": "پست"
+  }
+]

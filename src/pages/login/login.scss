@@ -1,0 +1,43 @@
+page-login {
+  .arrow_box {
+    position: relative;
+    background: #fff;
+    border: 2px solid #fff;
+  }
+  .arrow_box:before {
+    border-color: rgba(194, 225, 245, 0);
+    border-bottom-color: #fff;
+    border-width: 30px;
+    margin-left: -30px;
+  }
+  .center-block {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .arrow_box {
+    position: relative;
+    background: #fff;
+    border: 2px solid #fff;
+  }
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: none;
+    background: #ccc;
+  }
+  .icon {
+    padding: 10px;
+    background: #8e8e8e;
+    color: #000;
+    min-width: 50px;
+    text-align: center;
+    font-size: 20px;
+  }
+  .input-container {
+    display: flex;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}

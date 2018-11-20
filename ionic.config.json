@@ -1,5 +1,7 @@
 {
   "name": "vira",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }
