@@ -21,6 +21,7 @@ import {IonicStorageModule} from "@ionic/storage";
 import {ProductserviceProvider} from "../providers/productservice/productservice";
 import {HttpModule} from "@angular/http";
 import {LoginPage} from "../pages/login/login";
+import {RegistrationPage} from "../pages/registration/registration";
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {LoginPage} from "../pages/login/login";
     CustomerInfoPage,
     MyListPage,
     ShoppingPage,
-    LoginPage
+    LoginPage,
+    RegistrationPage
   ],
   imports: [
     HttpModule,
@@ -60,7 +62,8 @@ import {LoginPage} from "../pages/login/login";
     CustomerInfoPage,
     MyListPage,
     ShoppingPage,
-    LoginPage
+    LoginPage,
+    RegistrationPage
   ],
   providers: [
     StatusBar,

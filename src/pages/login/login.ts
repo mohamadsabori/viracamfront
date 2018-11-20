@@ -28,19 +28,28 @@ export class LoginPage {
   }
 
   login(){
-    //First get locally user pass and mbile number
-    this.storage.get('myPhone');
-    this.storage.get('password');
 
-    this.storage.set('myPhone', this.mobile);
-    this.storage.set('password', this.password);
-    let toast = this.toastCtrl.create({
-      message: '    اطلاعات شما با موفقیت ثبت گردید  ',
-      duration: 3000,
-      position: 'top'
+    //First get locally user pass and mbile number
+    var myUserName;
+    this.storage.get('myPhone').then((val) => {
+      myUserName = val;
     });
-    toast.present();
-    this.navCtrl.setRoot(HomePage);
+    var myPassword;
+    this.storage.get('password').then((val) => {
+      myPassword = val;
+    });
+    if(myUserName != this.mobile || myPassword != this.password){
+
+    }else{
+      let toast = this.toastCtrl.create({
+        message: '    اطلاعات شما با موفقیت ثبت گردید  ',
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
+      this.navCtrl.setRoot(HomePage);
+    }
+
   }
 
   singUp(){

@@ -12,26 +12,26 @@
 
 </ion-header>
 
-
-<ion-content padding>
+<ion-content style="background: #289a60">
+  <div class="img-container">
+    <img class="img-responsive center-block login-logo" src="../../assets/Images/logo.png">
+  </div>
   <div class="container" dir="rtl">
     <div class="form-group arrow_box login">
-      <form action="/action_page.php">
-        <div class="input-container">
-          <i class="fa fa-mobile icon"></i>
-          <input class="input-field" type="text" placeholder="شماره موبایل" name="mobile">
-        </div>
-        <div class="input-container">
-          <i class="fa fa-lock icon"></i>
-          <input class="input-field" type="password" placeholder="کلمه عبور" name="password">
-        </div>
-        <div class="input-container">
-          <i class="fa fa-lock icon"></i>
-          <input class="input-field" type="password" placeholder="تکرار کلمه عبور" name="repassword">
-        </div>
-
-        <button type="submit" class="btn btn-login">ثبت نام</button>
-      </form>
+      <h2>ورود</h2>
+      <div class="input-container">
+        <i class="fa fa-mobile icon"></i>
+        <input class="input-field" type="text" placeholder="شماره موبایل" name="mobile" [(ngModel)]="mobile">
+      </div>
+      <div class="input-container">
+        <i class="fa fa-lock icon"></i>
+        <input class="input-field" type="password" placeholder="کلمه عبور" name="password" [(ngModel)]="password">
+      </div>
+      <div class="input-container">
+        <i class="fa fa-lock icon"></i>
+        <input class="input-field" type="password" placeholder="تکرار کلمه عبور" name="repeatePassword" [(ngModel)]="repeatePassword">
+      </div>
+      <button ion-button full (click)="singUp()">ثبت نام</button>
     </div>
   </div>
 </ion-content>
