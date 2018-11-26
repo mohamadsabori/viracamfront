@@ -33,7 +33,7 @@ export class RegistrationPage {
       this.storage.set('myPhone', this.mobile);
       this.storage.set('password', this.password);
       let toast = this.toastCtrl.create({
-        message: '    اطلاعات شما با موفقیت ثبت گردید  ',
+        message: '    اطلاعات شما با موفقیت ثبت گردید  ' + '\t' + this.mobile+ '\t' + this.password,
         duration: 3000,
         position: 'top'
       });

@@ -1,4 +1,4 @@
-<!--
+﻿<!--
   Generated template for the AddorderPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
@@ -14,36 +14,52 @@
 
 
 <ion-content padding style="text-align: right;">
-  <h2 class="bg-grey">
-    <span class="pull-right">جمع کل خرید</span>
-    <span class="pull-left">{{newOrder.totalFactor}} تومان</span>
-  </h2>
-  <ion-card *ngFor="let item of newOrder.orderset">
-    <ion-row>
-      <ion-col>
-        <ion-thumbnail item-start>
-          <img src="{{item.fileSource}}"/>
-        </ion-thumbnail>
-      </ion-col>
-      <ion-col>
-        <h4 class="text-center">{{item.product.name}}</h4>
-        <ion-row *ngFor="let properties of item.product.properties">
-          <ion-col>
-            {{properties.value}}
-          </ion-col>
-        </ion-row>
-      </ion-col>
-      <ion-col>
-        <h4>{{item.totalPrice}} تومان</h4>
- تعداد          <input type="text" class="cnt" [(ngModel)]="item.qty" style="width: 20px;"/>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <button ion-button full (click)="deleteThisRow(item)">حذف</button>
-      </ion-col>
-    </ion-row>
-  </ion-card>
+  <!--<table width="100%">
+    <thead>
+    <tr>
+      <th>
+
+      </th>
+      <th>عنوان</th>
+      <th>تعداد</th>
+      <th>جمع</th>
+      <th>حذف</th>
+    </tr>
+    </thead>
+    <tr *ngFor="let item of selectedItem; let i = index">
+      <td>
+        <ion-avatar item-start>
+          <img src="{{item.fileSource}}">
+        </ion-avatar>
+      </td>
+      <td>
+        <h2>{{item.title}}</h2>
+      </td>
+      <td>
+        <h3>{{item.qty}}</h3>
+      </td>
+      <td>
+        <h3> {{item.totalPrice}}</h3>
+      </td>
+      <td>
+        <button ion-button icon-only (click)="deleteThisRow(i)">
+          <ion-icon name="close"></ion-icon>
+        </button>
+      </td>
+    </tr>
+  </table>-->
+  <ion-list >
+    <ion-list-header>لیست سفارش</ion-list-header>
+    <ion-item *ngFor="let item of selectedItem;let i = index;">
+      <ion-img icon-only src="{{item.fileSource}}"></ion-img>
+      <ion-label item-start>{{item.title}}</ion-label>
+      <ion-input item-start type="number" [(ngModel)]="item.qty" (change)="setOrderTotalPrice(i)" min="0"></ion-input>
+      <ion-label item-end>{{item.totalPrice}}</ion-label>
+      <button ion-button icon-only item-end (click)="deleteThisRow(i)">
+        <ion-icon color="primary" name="close"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
   <ion-list>
     <ion-list-header>اطلاعات مشتری</ion-list-header>
     <ion-item>
@@ -58,6 +74,7 @@
       <ion-label fixed>آدرس</ion-label>
       <ion-textarea type="text" [(ngModel)]="newOrder.userAddress"></ion-textarea>
     </ion-item>
+  </ion-list>
   <ion-item>
     <ion-label>شیوه حمل</ion-label>
     <ion-select [(ngModel)]="newOrder.shippingMethod.id" okText="انتخاب" cancelText="لغو">
@@ -68,10 +85,7 @@
     <ion-label fixed>نام باربری/ترمینال</ion-label>
     <ion-textarea type="text" [(ngModel)]="newOrder.shippingMethodDetails"></ion-textarea>
   </ion-item>
-  </ion-list>
-  <ion-footer>
-  <ion-toolbar>
+  <ion-item>
     <button ion-button full (click)="addOrder()" >ثبت</button>
-  </ion-toolbar>
-</ion-footer>
+  </ion-item>
 </ion-content>

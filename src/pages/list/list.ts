@@ -4,7 +4,6 @@ import {ProductserviceProvider} from "../../providers/productservice/productserv
 import {AddorderPage} from "../addorder/addorder";
 import {ProductProperties} from "../../model/ProductProperties";
 import {ProductItem} from "../../model/productItems";
-import {GlobalVariable} from "../../shared/Global";
 
 @Component({
   selector: 'page-list',
@@ -15,7 +14,7 @@ export class ListPage {
   public itemCounts: string = '';
   selectedCategory: number;
   items: Array< ProductItem >;
-  hasProduct: boolean = false;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private productservice: ProductserviceProvider) {
     // If we navigated to this page, we will have an item available as a nav param
@@ -29,7 +28,6 @@ export class ListPage {
   initializeItems(){
     this.productservice.loadAllProductsByCategoryType(this.selectedCategory).subscribe(data => {
         this.items = [];
-        this.hasProduct = false;
         for (let i = 0; i < data.json().length; i++) {
           let properties: Array<ProductProperties> = [];
           if(data.json()[i]["properties"] != null && data.json()[i]["properties"].length > 0){
@@ -70,30 +68,33 @@ export class ListPage {
     // console.log('value is=' + document.getElementById(item.id).value);
     // item.qty = this.itemCounts;
     // this.itemCounts = '';
-    item.qty = 1;
-    item.totalPrice = 1 * item.cost;
+    item.totalPrice = item.qty * item.cost;
     var founded: boolean;
     founded = false;
-    if(GlobalVariable.savedItems != null && GlobalVariable.savedItems.length > 0){
-      for(var i =0;i< GlobalVariable.savedItems.length;i++){
-        if(GlobalVariable.savedItems[i].id == item.id){
-          GlobalVariable.savedItems[i].qty++;
-          GlobalVariable.savedItems[i].totalPrice = GlobalVariable.savedItems[i].qty * item.cost;
+    if(this.productservice.savedItems != null && this.productservice.savedItems.length > 0){
+      for(var i =0;i< this.productservice.savedItems.length;i++){
+        if(this.productservice.savedItems[i].id == item.id){
+          this.productservice.savedItems[i].qty++;
+          this.productservice.savedItems[i].totalPrice = this.productservice.savedItems[i].qty * item.cost;
           founded = true;
           break;
         }
       }
     }
     if(!founded){
-      GlobalVariable.savedItems.push(item);
+      //this.productservice.savedItems.push(item);
+      this.productservice.savedItems.push({
+            title: item.title,note: item.note, icon: this.icons[0], id: item.id , fileSource: item.fileSource, properties: item.properties,
+            qty: item.qty, cost: item.cost, totalPrice: item.totalPrice
+          });
     }
     // document.getElementById(item.id) = "";
-    this.hasProduct = true;
+    this.productservice.hasProduct = true;
   }
 
   finishingCart() {
     this.navCtrl.push(AddorderPage, {
-      item: GlobalVariable.savedItems
+      item: this.productservice.savedItems
     });
   }
 

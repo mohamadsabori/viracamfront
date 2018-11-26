@@ -6,7 +6,7 @@ export class Product{
   public cost: String;
   public description: String;
   public properties: Array<ProductProperties>;
-public productImages: Array<ProductImages>;
+  public productImages: Array<ProductImages>;
 
   constructor(id: number, name: String, cost: String, description: String, properties: Array<ProductProperties>) {
     this.id = id;
@@ -14,5 +14,13 @@ public productImages: Array<ProductImages>;
     this.cost = cost;
     this.description = description;
     this.properties = properties;
+  }
+  constructor(id: number, name: String, cost: String, description: String, properties: Array<ProductProperties>, productImages: Array<ProductImages>) {
+    this.id = id;
+    this.name = name;
+    this.cost = cost;
+    this.description = description;
+    this.properties = properties;
+    this.productImages = productImages;
   }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import {HomePage} from "../home/home";
 import {Storage} from '@ionic/storage';
 import {RegistrationPage} from "../registration/registration";
@@ -19,8 +19,19 @@ import {RegistrationPage} from "../registration/registration";
 export class LoginPage {
   mobile: string;
   password: string;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, private toastCtrl: ToastController) {
+  myUserName : string;
+  myPassword : string;
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, private toastCtrl: ToastController
+  , private alertCtrl: AlertController) {
+    this.storage.get('myPhone').then((val) => {
+      this.myUserName = val;
+      this.storage.get('password').then((val) => {
+        this.myPassword = val;
+        if(this.myUserName != null && this.myUserName != "" && this.myPassword != null && this.myPassword != ""){
+          this.navCtrl.setRoot(HomePage);
+        }
+      });
+    });
   }
 
   ionViewDidLoad() {
@@ -30,26 +41,29 @@ export class LoginPage {
   login(){
 
     //First get locally user pass and mbile number
-    var myUserName;
+
     this.storage.get('myPhone').then((val) => {
-      myUserName = val;
-    });
-    var myPassword;
-    this.storage.get('password').then((val) => {
-      myPassword = val;
-    });
-    if(myUserName != this.mobile || myPassword != this.password){
-
-    }else{
-      let toast = this.toastCtrl.create({
-        message: '    اطلاعات شما با موفقیت ثبت گردید  ',
-        duration: 3000,
-        position: 'top'
+      this.myUserName = val;
+      this.storage.get('password').then((val) => {
+        this.myPassword = val;
+        if(this.myUserName != this.mobile || this.myPassword != this.password){
+           let alert = this.alertCtrl.create({
+           title: 'خطا',
+           message: 'نا کاربری یا کلمه عبو اشتباه می باشد',
+           buttons: ['Ok']
+           });
+           alert.present();
+        }else{
+          let toast = this.toastCtrl.create({
+            message: '    اطلاعات شما با موفقیت ثبت گردید  ',
+            duration: 3000,
+            position: 'top'
+          });
+          toast.present();
+          this.navCtrl.setRoot(HomePage);
+        }
       });
-      toast.present();
-      this.navCtrl.setRoot(HomePage);
-    }
-
+    });
   }
 
   singUp(){

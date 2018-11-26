@@ -10,8 +10,9 @@ export class ProductOrder{
   private orderStatus: Category;
   qty : number;
   totalPrice : number;
+  fileSource : String;
 
-  constructor(id: number, product: Product, user: SystemUsers, orderDate: String, orderTime: String, orderStatus: Category, qty : number, totalPrice : number) {
+  constructor(id: number, product: Product, user: SystemUsers, orderDate: String, orderTime: String, orderStatus: Category, qty : number, totalPrice : number, fileSource : String) {
     this.id = id;
     this.product = product;
     this.user = user;
@@ -20,5 +21,6 @@ export class ProductOrder{
     this.orderStatus = orderStatus;
     this.qty = qty;
     this.totalPrice = totalPrice;
+    this.fileSource = fileSource;
   }
 }

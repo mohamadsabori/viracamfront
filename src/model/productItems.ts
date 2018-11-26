@@ -9,7 +9,6 @@ export class ProductItem {
   properties: Array<ProductProperties>;
   qty: number;
   totalPrice: number;
-
   constructor() {
 
   }

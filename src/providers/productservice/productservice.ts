@@ -2,6 +2,7 @@ import {Http, Headers} from '@angular/http';
 import {Injectable} from '@angular/core';
 import {AddOrder} from "../../model/AddOrder";
 import {UserOrder} from "../../model/UserOrder";
+import {ProductItem} from "../../model/productItems";
 /*
  Generated class for the ProductserviceProvider provider.
 
@@ -10,10 +11,12 @@ import {UserOrder} from "../../model/UserOrder";
  */
 @Injectable()
 export class ProductserviceProvider {
+  hasProduct: boolean = false;
   private addOrderValue: AddOrder = new AddOrder();
-  private userPhone: string = '09124850689';
+  private userPhone: string = '';
   // public baseUrl: String = '/ViraCam';
   public baseUrl: String = 'http://176.31.82.40:8080/ViraCamServer';
+  savedItems: Array< ProductItem > = [];
   currentUser: { userPhoneNumber: "" };
 
   constructor(public http: Http) {

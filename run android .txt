@@ -1,0 +1,1 @@
+ionic cordova run android -- --gradleArg=-PcdvMinSdkVersion=20

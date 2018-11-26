@@ -8,7 +8,10 @@
       <button ion-button icon-only>
         <ion-icon class="fa fa-search"></ion-icon>
       </button>
-      <button ion-button icon-only>
+      <button ion-button icon-only (click)="finishingCart()">
+        <div *ngIf="service.hasProduct">
+          {{service.savedItems.length}}
+        </div>
         <ion-icon class="fa fa-shopping-cart"></ion-icon>
       </button>
     </ion-buttons>
@@ -101,12 +104,12 @@
       <div class="full-box">
         <div class="box boxPost" (click)="openMyOrder($event)">
           <!--<ion-icon name="megaphone" class="icon"></ion-icon>-->
-          <img src="assets/imgs/APPIcons/post.png" id="post-img">
+          <img src="assets/imgs/APPIcons/Post_2.png" id="post-img">
           <p>پیگیری مرسولات</p>
         </div>
         <div class="box boxGuarantee">
           <!--<ion-icon name="megaphone" class="icon"></ion-icon>-->
-          <img src="assets/imgs/APPIcons/guarantee.png" id="guarantee-img">
+          <img src="assets/imgs/APPIcons/Guarantee_2.png" id="guarantee-img">
           <p>گارانتی</p>
         </div>
       </div>

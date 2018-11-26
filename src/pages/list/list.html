@@ -1,19 +1,17 @@
 <ion-header>
   <ion-navbar>
-      <ion-buttons end>
-        <button ion-button icon-only (click)="finishingCart()">
-          <div *ngIf="hasProduct">
-            {{savedItems.length}}
-          </div>
-          <ion-icon  name="cart">
-          </ion-icon>
-        </button>
-      </ion-buttons>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>محصولات</ion-title>
-
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon class="fa fa-search"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="finishingCart()">
+        <div *ngIf="productservice.hasProduct">
+          {{productservice.savedItems.length}}
+        </div>
+        <ion-icon class="fa fa-shopping-cart"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title></ion-title>
   </ion-navbar>
 </ion-header>
 <!---->
@@ -26,21 +24,30 @@
     cancelButtonText="لغو"
     cancelButtonText="جست و جو">
   </ion-searchbar>
-  <div class="product-items">
-    <div class="product-item" *ngFor="let item of items;let i = index;">
-      <div class="product product-image">
-        <img src="{{item.fileSource}}" />
-      </div>
-      <div class="product product-info">
-        <h4 class="product-title">{{item.title}}</h4>
-        <p *ngFor="let properties  of item.properties">{{properties.value}}</p>
-      </div>
-      <div class="product product-price">
-        <h4 class="price-title">{{item.cost}}</h4>
-        <p>
-          <a href="#" (click)="itemTapped($event,item)">اضافه به سبد خرید</a>
-        </p>
-      </div>
-    </div>
-  </div>
+      <ion-card *ngFor="let item of items;let i = index;">
+        <ion-row>
+          <ion-col>
+            <ion-thumbnail item-start>
+              <img src="{{item.fileSource}}"/>
+            </ion-thumbnail>
+          </ion-col>
+          <ion-col>
+            <h4 class="text-center">{{item.title}}</h4>
+            <ion-row *ngFor="let properties of item.properties">
+              <ion-col>
+                {{properties.value}}
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col>
+            <div>{{item.cost}} تومان</div>
+            تعداد          <input type="text" class="cnt" [(ngModel)]="item.qty" style="width: 20px;"/>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <button ion-button full (click)="itemTapped($event,item)">اضافه به سبد خرید</button>
+          </ion-col>
+        </ion-row>
+      </ion-card>
 </ion-content>

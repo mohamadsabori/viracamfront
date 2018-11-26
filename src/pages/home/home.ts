@@ -4,6 +4,7 @@ import {ProductserviceProvider} from "../../providers/productservice/productserv
 import {ListPage} from "../list/list";
 import {MyordersPage} from "../myorders/myorders";
 import {HelpPage} from "../help/help";
+import {AddorderPage} from "../addorder/addorder";
 
 @Component({
   selector: 'page-home',
@@ -51,6 +52,12 @@ export class HomePage {
 
   openHelpPage(event){
     this.navCtrl.push(HelpPage);
+  }
+
+  finishingCart() {
+    this.navCtrl.push(AddorderPage, {
+      item: this.service.savedItems
+    });
   }
 
 }

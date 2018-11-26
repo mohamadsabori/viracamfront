@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="finishingCart()">
+          <div *ngIf="hasProduct">
+            {{savedItems.length}}
+          </div>
+          <ion-icon  name="cart">
+          </ion-icon>
+        </button>
+      </ion-buttons>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>محصولات</ion-title>
+
+  </ion-navbar>
+</ion-header>
+<!---->
+<ion-content style="text-align: right">
+  <ion-searchbar
+    [(ngModel)]="myInput"
+    [showCancelButton]="shouldShowCancel"
+    (ionInput)="searchItems($event)"
+    (ionCancel)="onCancel($event)"
+    cancelButtonText="لغو"
+    cancelButtonText="جست و جو">
+  </ion-searchbar>
+  <div class="product-items">
+    <div class="product-item" *ngFor="let item of items;let i = index;">
+      <div class="product product-image">
+        <img src="{{item.fileSource}}" />
+      </div>
+      <div class="product product-info">
+        <h4 class="product-title">{{item.title}}</h4>
+        <p *ngFor="let properties  of item.properties">{{properties.value}}</p>
+      </div>
+      <div class="product product-price">
+        <h4 class="price-title">{{item.cost}}</h4>
+        <p>
+          <a href="#" (click)="itemTapped($event,item)">اضافه به سبد خرید</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</ion-content>
