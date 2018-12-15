@@ -21,7 +21,8 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  <script id='payir-trust-script' src='https://pay.ir/js/trust-logo.js' data-id='91312'></script>
   <h2 class="bg-grey">
     <span class="pull-right">جمع کل خرید</span>
     <span class="pull-left">{{newOrder.totalFactor}} تومان</span>
@@ -53,6 +54,7 @@
       </ion-col>
     </ion-row>
   </ion-card>
+  <button ion-button full (click)="payThis()">حذف</button>
   <!--<div class="container">
     <div class="row product">
       <div class="product-details" *ngFor="let item of newOrder.orderset">
@@ -82,9 +84,9 @@
       </div>
     </div>
   </div>-->
+  <ion-footer>
+    <ion-toolbar>
+      <ion-title>خرید خود را نهایی کنید</ion-title>
+    </ion-toolbar>
+  </ion-footer>
 </ion-content>
-<ion-footer>
-  <ion-toolbar>
-    <ion-title>خرید خود را نهایی کنید</ion-title>
-  </ion-toolbar>
-</ion-footer>

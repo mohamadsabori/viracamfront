@@ -15,12 +15,4 @@ export class Product{
     this.description = description;
     this.properties = properties;
   }
-  constructor(id: number, name: String, cost: String, description: String, properties: Array<ProductProperties>, productImages: Array<ProductImages>) {
-    this.id = id;
-    this.name = name;
-    this.cost = cost;
-    this.description = description;
-    this.properties = properties;
-    this.productImages = productImages;
-  }
 }
