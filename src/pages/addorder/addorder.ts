@@ -28,13 +28,12 @@ export class AddorderPage {
   selectedItem: Array<ProductItem> = [];
   newOrder: UserOrder;
   savedData: any;
-	totalFactor: number = 0;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private service: ProductserviceProvider, private storage: Storage
 	, private toastCtrl: ToastController) {
     this.shippingMethod = [];
     for(let i = 0; i <navParams.get('item').length; i++){
       this.selectedItem.push(navParams.get('item')[i]);
-	  totalFactor = totalFactor + navParams.get('item')[i].totalPrice;
     }
     let totalFactor: number = 0;
     for (var i = 0; i < this.selectedItem.length; i++) {
@@ -42,8 +41,8 @@ export class AddorderPage {
     }
     this.newOrder = new UserOrder(0, [], '', '', '', new ShippingMethod(), totalFactor, '', '', new Category(), '', '');
     for (let i = 0; i < this.selectedItem.length; i++) {
-      this.newOrder.orderset.push(new ProductOrder(0, new Product(this.selectedItem[i].id, '', '', '', this.selectedItem[i].properties,this.selectedItem[i].fileSource), new SystemUsers(), '', '', new Category()
-        , this.selectedItem[i].qty, this.selectedItem[i].totalPrice));
+      this.newOrder.orderset.push(new ProductOrder(0, new Product(this.selectedItem[i].id, '', '', '', this.selectedItem[i].properties), new SystemUsers(), '', '', new Category()
+        , this.selectedItem[i].qty, this.selectedItem[i].totalPrice,this.selectedItem[i].fileSource));
       // , userFullName: '', userPhoneNumber: '',userAddress: '', shippingMethod: new ShippingMethod(), id: -1});
     }
     this.storage.get('myPhone').then((val) => {

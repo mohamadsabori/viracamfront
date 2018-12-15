@@ -1,3 +1,26 @@
 page-addorder {
+  h2.bg-grey {
+    margin-top: 0;
+    margin-bottom: 0;
+    height: 50px;
+    padding-top: 15px;
+    background: #eee;
+    color: #000;
+  }
+  .light-red {
+    background: #be4041;
+	}
+	.total{
+		color:#fff;
+	}
+	.pull-right {
+        padding-right: 5px;
+		
+    }
 
+    .pull-left {
+    text-align: left;
+    position: absolute;
+    left: 30px;
+    }
 }

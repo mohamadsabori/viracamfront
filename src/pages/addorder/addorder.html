@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content padding style="text-align: right;">
+<ion-content style="text-align: right;">
   <h2 class="bg-grey">
     <span class="pull-right">جمع کل خرید</span>
     <span class="pull-left">{{newOrder.totalFactor}} تومان</span>
@@ -34,14 +34,15 @@
         </ion-row>
       </ion-col>
       <ion-col>
-        <h4>{{item.totalPrice}} تومان</h4>
+        <h4>{{item.cost}} تومان</h4>
  تعداد          <input type="text" class="cnt" [(ngModel)]="item.qty" style="width: 20px;"/>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col>
-        <button ion-button full (click)="deleteThisRow(item)">حذف</button>
-      </ion-col>
+	<div class="col-md-12 col-sm-12 col-xs-12 light-red total">
+	<span class="pull-right">جمع کل خرید</span><span class="pull-left">{{item.totalPrice}} تومان</span>
+	</div>
+	<button ion-button full (click)="deleteThisRow(item)" style="margin-top:0px">حذف</button>
     </ion-row>
   </ion-card>
   <ion-list>
@@ -69,9 +70,5 @@
     <ion-textarea type="text" [(ngModel)]="newOrder.shippingMethodDetails"></ion-textarea>
   </ion-item>
   </ion-list>
-  <ion-footer>
-  <ion-toolbar>
-    <button ion-button full (click)="addOrder()" >ثبت</button>
-  </ion-toolbar>
-</ion-footer>
+  <button ion-button full (click)="addOrder()" >ثبت</button>
 </ion-content>
