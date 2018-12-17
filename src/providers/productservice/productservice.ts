@@ -70,31 +70,4 @@ export class ProductserviceProvider {
   cancelUserOrder (id: any){
     return this.http.post(this.baseUrl + '/userorder/cancelOrder', id);
   }
-
-  payItem(newOrder: UserOrder) {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('CURLOPT_SSL_VERIFYHOST', false);
-    headers.append('CURLOPT_SSL_VERIFYPEER', false);
-    headers.append('CURLOPT_RETURNTRANSFER', true);
-    return this.http.post('https://pay.ir/pg/send', {
-      api: 'cc5de67db7a42f90908edee5012084aa',
-      amount: newOrder.totalFactor,
-      redirect: this.baseUrl + '/productorder/userOrderPaid?id' + newOrder.id,
-      mobile: newOrder.userPhoneNumber,
-      factorNumber: newOrder.id,
-      description: 'خرید از ویراکم'
-    }).subscribe(
-      data => {
-        if (data.status == '1') {
-          this.http.get('https://pay.ir/pg/' + data.token)
-        } else if (data.status == '0') {
-          console.log(data.errorCode);
-          console.log(data.errorMessage);
-        }
-      }, error2 => {
-        console.log(error2);
-      }
-    );
-  }
 }

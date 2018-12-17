@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams, Platform} from 'ionic-angular';
 import {UserOrder} from "../../model/UserOrder";
 import {ProductserviceProvider} from "../../providers/productservice/productservice";
 import { InAppBrowser } from 'ionic-native';
@@ -22,7 +22,7 @@ export class ShoppingPage {
   newOrder: UserOrder;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController
-    , private service: ProductserviceProvider) {
+    , private service: ProductserviceProvider, private platform: Platform) {
     this.newOrder = this.navParams.get("item");
   }
 
@@ -35,7 +35,7 @@ export class ShoppingPage {
     this.platform.ready().then(() => {
       let browser = new InAppBrowser("http://viracam.com/paymentgateway/send.php?amount="
         + this.newOrder.totalFactor + "&mobile=" + this.newOrder.userPhoneNumber
-        + "&factorNumber" + this.newOrder.id + "&description=فاکتور خرید از ویراکم",'_blank');
+        + "&factorNumber=" + this.newOrder.id + "&description=فاکتور خرید از ویراکم",'_blank');
 
     });
   }

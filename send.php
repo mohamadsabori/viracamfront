@@ -6,7 +6,7 @@ $amount = $_GET["amount"];
 $mobile = $_GET["mobile"];
 $factorNumber = $_GET["factorNumber"];
 $description = $_GET["description"];
-$redirect = 'http://viracam.com/paymentgateway/verify.php?itemId' . $_GET['itemId'];
+$redirect = 'http://viracam.com/paymentgateway/verify.php?itemId=' . $_GET['factorNumber'];
 $result = send($api, $amount, $redirect, $mobile, $factorNumber, $description);
 $result = json_decode($result);
 if($result->status) {
