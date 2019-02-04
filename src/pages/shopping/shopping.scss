@@ -7,4 +7,11 @@ page-shopping {
 		background: #eee;
 		color: #000;
 	}
+	th: {text-align: center;}
+	td: {text-align: center;}
+	tr:nth-child(even) {background: #86d09d}
+  tr:nth-child(odd) {background: #FFF}
+  table{text-align: center !important}
+  thead{background-color: #be4041;color: #FFF;
+    padding: 10px;}
 }

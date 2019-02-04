@@ -6,8 +6,6 @@ import { HomePage } from '../pages/home/home';
 import {MenuOptionModel} from "../shared/side-menu-content/models/menu-option-model";
 import {ProductserviceProvider} from "../providers/productservice/productservice";
 import {ListPage} from "../pages/list/list";
-import {MyordersPage} from "../pages/myorders/myorders";
-import {MyinfoPage} from "../pages/myinfo/myinfo";
 import {SideMenuSettings} from "../shared/side-menu-content/models/side-menu-settings";
 import {CustomerInfoPage} from "../pages/customer-info/customer-info";
 import {MyListPage} from "../pages/my-list/my-list";

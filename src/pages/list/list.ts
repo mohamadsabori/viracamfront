@@ -25,14 +25,17 @@ export class ListPage {
     this.initializeItems();
   }
 
-  initializeItems(){
+  initializeItems() {
     this.productservice.loadAllProductsByCategoryType(this.selectedCategory).subscribe(data => {
         this.items = [];
         for (let i = 0; i < data.json().length; i++) {
           let properties: Array<ProductProperties> = [];
-          if(data.json()[i]["properties"] != null && data.json()[i]["properties"].length > 0){
+          if (data.json()[i]["properties"] != null && data.json()[i]["properties"].length > 0) {
             for (let j = 0; j < data.json()[i]["properties"].length; j++) {
-              properties.push({id: data.json()[i]["properties"][j]["id"], value: data.json()[i]["properties"][j]["value"]});
+              properties.push({
+                id: data.json()[i]["properties"][j]["id"],
+                value: data.json()[i]["properties"][j]["value"]
+              });
             }
           } else {
             properties = new Array();
@@ -51,12 +54,14 @@ export class ListPage {
             /*fileSource: data.json()[i]["fileSource"] != null ? data.json()[i]["fileSource"] : ""*/
 
             // For release
-            fileSource: data.json()[i]["fileSource"] != null ? 'http://176.31.82.40:8080/ViraCamServer/product/files?id=' + data.json()[i]["id"] +
+            fileSource: data.json()[i]["fileSource"] != null ? this.productservice.baseUrl + '/product/files?id=' + data.json()[i]["id"] +
               '&filename=' + data.json()[i]["fileSource"] : "",
             properties: properties,
-            qty: 1,
-            cost: data.json()[i]["cost"],
-            totalPrice: data.json()[i]["cost"]
+            qty: 1
+            , cost: data.json()[i]["cost"]
+            , totalPrice: data.json()[i]["cost"]
+            , discountCondition: data.json()[i]["discountCondition"] != null ? data.json()[i]["discountCondition"] : 0
+            , discount: data.json()[i]["discount"] != null ? data.json()[i]["discount"] : 0
           });
         }
       }
@@ -65,17 +70,21 @@ export class ListPage {
   }
 
   itemTapped(event, item) {
-    // console.log('value is=' + document.getElementById(item.id).value);
-    // item.qty = this.itemCounts;
-    // this.itemCounts = '';
-    item.totalPrice = item.qty * item.cost;
+    this.productservice.itemTapped(item);
+    /*item.totalPrice = 1 * item.cost;
     var founded: boolean;
     founded = false;
+    this.productservice.itemTapped(item);
     if(this.productservice.savedItems != null && this.productservice.savedItems.length > 0){
       for(var i =0;i< this.productservice.savedItems.length;i++){
         if(this.productservice.savedItems[i].id == item.id){
           this.productservice.savedItems[i].qty++;
-          this.productservice.savedItems[i].totalPrice = this.productservice.savedItems[i].qty * item.cost;
+          let discounts: number = 0;
+          if(item.discountCondition != 0 && this.productservice.savedItems[i].qty > item.discountCondition){
+            discounts = (this.productservice.savedItems[i].qty - item.discountCondition) * item.cost * (item.discount / 100);
+          }
+          this.productservice.savedItems[i].totalPrice = (this.productservice.savedItems[i].qty * item.cost) - discounts;
+          this.productservice.savedItems[i].discount = discounts;
           founded = true;
           break;
         }
@@ -83,23 +92,30 @@ export class ListPage {
     }
     if(!founded){
       //this.productservice.savedItems.push(item);
+      let discount: number = 0;
+      if(item.discount == 1){
+        discount = item.cost * (item.discount / 100)
+      }
       this.productservice.savedItems.push({
             title: item.title,note: item.note, icon: this.icons[0], id: item.id , fileSource: item.fileSource, properties: item.properties,
-            qty: item.qty, cost: item.cost, totalPrice: item.totalPrice
+            qty: item.qty, cost: item.cost, totalPrice: item.totalPrice - discount,discountCondition: item.discountCondition, discount: item.discount
           });
     }
     // document.getElementById(item.id) = "";
-    this.productservice.hasProduct = true;
+    this.productservice.hasProduct = true;*/
   }
 
   finishingCart() {
-    this.navCtrl.push(AddorderPage, {
-      item: this.productservice.savedItems
-    });
+    this.navCtrl.push(AddorderPage);
   }
 
   setOrderTotalPrice(i) {
-    this.items[i].totalPrice = this.items[i].qty * this.items[i].cost;
+    let discounts: number = 0;
+    if(this.items[i].discountCondition != 0 && this.items[i].qty > this.items[i].discountCondition){
+      discounts = (this.items[i].qty - this.items[i].discountCondition) * (this.items[i].discount / 100);
+    }
+    this.items[i].totalPrice = (this.items[i].qty * this.items[i].cost) - discounts;
+    // this.items[i].totalPrice = this.items[i].qty * this.items[i].cost;
   }
 
   searchItems(event){

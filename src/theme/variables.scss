@@ -38,7 +38,8 @@ $colors: (
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+	buttoncolor:	#be4041
 );
 
 
@@ -89,3 +90,16 @@ $colors: (
 $toolbar-background: rgba(76, 179, 133, 1);
 $fa-font-path:"../assets/webfonts";
 @import "bootstrap";
+h2.bg-grey {
+  margin-top: 0;
+  margin-bottom: 0;
+  height: 50px;
+  padding-top: 15px;
+  background: #eee;
+  color: #000;
+}
+@import url('../assets/fonts/BYekan.woff');
+$font-family-base: "BYekan", BYekan !default;
+body{
+  text-align: right;
+}

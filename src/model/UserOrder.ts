@@ -17,8 +17,11 @@ export class UserOrder {
   orderStatus: Category;
   orderSerial: string;
   shippingMethodDetails: string;
+  refID: string;
+  orderPayTime: string;
+  orderPayDate: string;
   constructor(id: number, orderset: Array<ProductOrder>, userFullName: string, userPhoneNumber: string, userAddress: string, shippingMethod: ShippingMethod, totalFactor: number
-    , orderDate: string, orderTime: string, orderStatus: Category, orderSerial: string, shippingMethodDetails: string) {
+    , orderDate: string, orderTime: string, orderStatus: Category, orderSerial: string, shippingMethodDetails: string, refID: string) {
     this.id = id;
     this.orderset = orderset;
     this.userFullName = userFullName;
@@ -31,5 +34,6 @@ export class UserOrder {
     this.orderStatus = orderStatus;
     this.orderSerial = orderSerial;
     this.shippingMethodDetails = shippingMethodDetails;
+    this.refID = refID;
   }
 }

@@ -16,10 +16,6 @@
 <ion-content padding style="text-align: right;">
     <ion-list *ngFor="let item of newOrder.orderset">
       <ion-item>
-        <ion-thumbnail item-start>
-          <img src="{{ item.product.productImages.length !=0 ? 'http://176.31.82.40:8080/ViraCamServer/product/files?id=' + item.product.id +
-          '&filename=' + item.product.productImages[0].filename : '' }}">
-        </ion-thumbnail>
         <h2>{{item.product.name}}</h2>
         <p>تعداد {{item.qty}}</p>
         <p>جمع {{item.totalPrice}}</p>

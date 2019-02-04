@@ -1,15 +1,13 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ToastController, Platform} from 'ionic-angular';
 import {ProductserviceProvider} from "../../providers/productservice/productservice";
 import {Storage} from '@ionic/storage';
 import {ShippingMethod} from "../../model/ShippingMethod";
 import {UserOrder} from "../../model/UserOrder";
-import {Product} from "../../model/Product";
-import {Category} from "../../model/Category";
-import {SystemUsers} from "../../model/SystemUsers";
-import {ProductOrder} from "../../model/ProductOrder";
 import {ProductItem} from "../../model/productItems";
 import {HomePage} from "../home/home";
+import { InAppBrowser } from 'ionic-native';
+import {Categories} from "../../model/Categories";
 
 /**
  * Generated class for the AddorderPage page.
@@ -24,59 +22,35 @@ import {HomePage} from "../home/home";
   templateUrl: 'addorder.html',
 })
 export class AddorderPage {
-  shippingMethod: Array<ShippingMethod>;
+  shippingMethod: Array<ShippingMethod> = [];
   selectedItem: Array<ProductItem> = [];
   newOrder: UserOrder;
   savedData: any;
+  showInfo: boolean = false;
+  payedId: string = Categories.ORDER_PAIED;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private service: ProductserviceProvider, private storage: Storage
-	, private toastCtrl: ToastController) {
-    this.shippingMethod = [];
-    for(let i = 0; i <navParams.get('item').length; i++){
-      this.selectedItem.push(navParams.get('item')[i]);
-    }
-    let totalFactor: number = 0;
-    for (var i = 0; i < this.selectedItem.length; i++) {
-      totalFactor = totalFactor + this.selectedItem[i].totalPrice;
-    }
-    this.newOrder = new UserOrder(0, [], '', '', '', new ShippingMethod(), totalFactor, '', '', new Category(), '', '');
-    for (let i = 0; i < this.selectedItem.length; i++) {
-      this.newOrder.orderset.push(new ProductOrder(0, new Product(this.selectedItem[i].id, '', '', '', this.selectedItem[i].properties), new SystemUsers(), '', '', new Category()
-        , this.selectedItem[i].qty, this.selectedItem[i].totalPrice,this.selectedItem[i].fileSource));
-      // , userFullName: '', userPhoneNumber: '',userAddress: '', shippingMethod: new ShippingMethod(), id: -1});
-    }
-    this.storage.get('myPhone').then((val) => {
-      this.newOrder.userPhoneNumber = val;
-    });
-    this.storage.get('myUserName').then((val) => {
-      this.newOrder.userFullName = val;
-    });
-    this.storage.get('myAddress').then((val) => {
-      this.newOrder.userAddress = val;
-    });
-
+	, private toastCtrl: ToastController, private platform: Platform) {
+    console.log(this.service.userOrder);
     service.loadAllshippingMethods().subscribe(data => {
       this.shippingMethod = data.json();
     }, error => {
       console.log(error);
     });
-	console.log(this.newOrder);
   }
 
   addOrder() {
-    this.storage.set('myPhone',this.newOrder.userPhoneNumber);
-    this.storage.set('myAddress',this.newOrder.userAddress);
-    this.storage.set('myUserName',this.newOrder.userFullName);
-    this.service.addUserOrder(this.newOrder).subscribe(
+    this.service.addUserOrder().subscribe(
       data => {
         this.savedData = data.json();
+
         let toast = this.toastCtrl.create({
           message: '    سفارش شما با موفقیت ثبت گردید  ',
           duration: 3000,
           position: 'top'
         });
         toast.present();
-        this.service.savedItems= [];
+        this.service.initiateNewOrder();
         this.navCtrl.setRoot(HomePage);
       }, error2 => {
         console.log(error2);
@@ -88,11 +62,57 @@ export class AddorderPage {
   }
 
   deleteThisRow(key: any){
-    this.selectedItem.splice(key, 1);
+    this.service.deleteThisRow(key);
   }
 
   setOrderTotalPrice(i: any) {
-    this.selectedItem[i].totalPrice = this.selectedItem[i].qty * this.selectedItem[i].cost;
+    let discounts: number = 0;
+    if(this.selectedItem[i].discountCondition != 0 && this.selectedItem[i].qty > this.selectedItem[i].discountCondition){
+      discounts = (this.selectedItem[i].qty - this.selectedItem[i].discountCondition) * (this.selectedItem[i].discount / 100);
+    }
+    this.selectedItem[i].totalPrice = (this.selectedItem[i].qty * this.selectedItem[i].cost) - discounts;
+  }
+  showCustomerInfo(){
+    this.showInfo = true;
   }
 
+  payOrder() {
+    this.service.addUserOrder().subscribe(
+      data => {
+        this.savedData = data.json();
+        let toast = this.toastCtrl.create({
+          message: '    سفارش شما با موفقیت ثبت گردید  ',
+          duration: 3000,
+          position: 'top'
+        });
+        toast.present();
+        this.service.initiateNewOrder();
+        this.navCtrl.setRoot(HomePage);
+        let browser = new InAppBrowser("http://viracam.com/paymentgateway/new/send.php?amount="
+        + (this.savedData.totalFactor) + "&mobile=" + this.savedData.userPhoneNumber
+        + "&factorNumber=" + this.savedData.orderSerial
+        + "&itemId=" + this.savedData.id
+        + "&description" +
+        "=فاکتور خرید از ویراکم بابت فاکتور " + this.savedData.orderSerial + " تاریخ " + this.savedData.orderDate
+        + " جناب آقای/خانم " + this.savedData.userFullName + " شماره تلفن " + this.savedData.userPhoneNumber
+        , '_blank');
+      }, error2 => {
+        let toast = this.toastCtrl.create({
+          message: error2,
+          duration: 3000,
+          position: 'top'
+        });
+        toast.present();
+      }
+    );
+  }
+  setNewQty(qty: any, i: any){
+    this.service.itemTappedByIndex(qty, i);
+  }
+
+  ionViewWillLeave() {
+    if(!this.service.hasProduct){
+      this.service.initiateNewOrder();
+    }
+  }
 }

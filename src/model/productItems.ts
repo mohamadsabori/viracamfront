@@ -9,6 +9,8 @@ export class ProductItem {
   properties: Array<ProductProperties>;
   qty: number;
   totalPrice: number;
+  discountCondition: number;
+  discount: number;
   constructor() {
 
   }

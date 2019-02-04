@@ -35,7 +35,6 @@ export class FactordetailsPage {
           text: 'خیر',
           role: 'cancel',
           handler: () => {
-            console.log('Cancel clicked');
           }
         },
         {

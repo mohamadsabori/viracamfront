@@ -14,61 +14,61 @@
 
 
 <ion-content style="text-align: right;">
-  <h2 class="bg-grey">
-    <span class="pull-right">جمع کل خرید</span>
-    <span class="pull-left">{{newOrder.totalFactor}} تومان</span>
-  </h2>
-  <ion-card *ngFor="let item of newOrder.orderset">
+    <div class="bg-grey">
+        <span class="pull-right">جمع کل خرید</span>
+        <span class="pull-left">{{service.userOrder.totalFactor}} تومان</span>
+    </div>
+  <ion-card *ngFor="let item of service.userOrder.orderset;let i = index;">
     <ion-row>
       <ion-col>
-        <ion-thumbnail item-start>
-          <img src="{{item.fileSource}}"/>
-        </ion-thumbnail>
+          <img style="width:80px" src="{{item.fileSource}}"/>
       </ion-col>
       <ion-col>
-        <h4 class="text-center">{{item.product.name}}</h4>
-        <ion-row *ngFor="let properties of item.product.properties">
-          <ion-col>
-            {{properties.value}}
-          </ion-col>
-        </ion-row>
+        <h2 class="text-center"><b>{{item.product.name}}</b></h2>
       </ion-col>
       <ion-col>
-        <h4>{{item.cost}} تومان</h4>
- تعداد          <input type="text" class="cnt" [(ngModel)]="item.qty" style="width: 20px;"/>
+        <h4>{{item.product.cost}} تومان</h4>
+ تعداد
+ <input type="number" class="cnt" [(ngModel)]="item.qty" style="width: 45px;" (change)="setNewQty($event.target.value, i)"/>
       </ion-col>
     </ion-row>
     <ion-row>
 	<div class="col-md-12 col-sm-12 col-xs-12 light-red total">
-	<span class="pull-right">جمع کل خرید</span><span class="pull-left">{{item.totalPrice}} تومان</span>
+	<span class="pull-right">قیمت کل</span><span class="pull-left">{{item.totalPrice}} تومان</span>
+    <div *ngIf="item.disCount != 0"><span class="pull-right">تخفیف</span> <span class="pull-left">{{item.disCount}} تومان</span></div>
 	</div>
-	<button ion-button full (click)="deleteThisRow(item)" style="margin-top:0px">حذف</button>
-    </ion-row>
+	<button ion-button full (click)="deleteThisRow(item)" style="margin-top:0px" color="white"><font style="color:red">حذف</font></button>
+  </ion-row>
   </ion-card>
-  <ion-list>
-    <ion-list-header>اطلاعات مشتری</ion-list-header>
+  <ion-list style="position: absolute;top: 0px;z-index: 9999999;width: 100%;" *ngIf="showInfo">
+    <ion-list-header style="margin-bottom: 0px !important;">اطلاعات مشتری</ion-list-header>
     <ion-item>
       <ion-label fixed>نام کاربری</ion-label>
-      <ion-input type="text" [(ngModel)]="newOrder.userFullName"></ion-input>
+      <ion-input type="text" [(ngModel)]="service.userOrder.userFullName"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label fixed>شماره موبایل</ion-label>
-      <ion-input type="text" [(ngModel)]="newOrder.userPhoneNumber"></ion-input>
+      <ion-input type="text" [(ngModel)]="service.userOrder.userPhoneNumber"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label fixed>آدرس</ion-label>
-      <ion-textarea type="text" [(ngModel)]="newOrder.userAddress"></ion-textarea>
+      <ion-textarea type="text" [(ngModel)]="service.userOrder.userAddress"></ion-textarea>
     </ion-item>
   <ion-item>
     <ion-label>شیوه حمل</ion-label>
-    <ion-select [(ngModel)]="newOrder.shippingMethod.id" okText="انتخاب" cancelText="لغو">
+    <ion-select [(ngModel)]="service.userOrder.shippingMethod.id" okText="انتخاب" cancelText="لغو">
       <ion-option *ngFor="let method of shippingMethod" [value]="method.id">{{method.value}}</ion-option>
     </ion-select>
   </ion-item>
   <ion-item>
     <ion-label fixed>نام باربری/ترمینال</ion-label>
-    <ion-textarea type="text" [(ngModel)]="newOrder.shippingMethodDetails"></ion-textarea>
+    <ion-textarea type="text" [(ngModel)]="service.userOrder.shippingMethodDetails"></ion-textarea>
+  </ion-item>
+  <ion-item>
+      <button ion-button full (click)="payOrder()">پرداخت</button>
+    <button ion-button full (click)="addOrder()">ثبت پیش فاکتور</button>
   </ion-item>
   </ion-list>
-  <button ion-button full (click)="addOrder()" >ثبت</button>
+  <button *ngIf="(service.userOrder.orderStatus == null ? true : service.userOrder.orderStatus.code !=payedId) && service.userOrder.orderset.length > 0" ion-button full (click)="showCustomerInfo()" >خرید خود را نهایی کنید</button>
+  <ion-label *ngIf="!(service.userOrder.orderStatus == null ? true : service.userOrder.orderStatus.code !=payedId)">سفارش پرداخت شده است</ion-label>
 </ion-content>

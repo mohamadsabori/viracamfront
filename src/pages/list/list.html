@@ -5,8 +5,8 @@
         <ion-icon class="fa fa-search"></ion-icon>
       </button>
       <button ion-button icon-only (click)="finishingCart()">
-        <div *ngIf="productservice.hasProduct">
-          {{productservice.savedItems.length}}
+        <div *ngIf="productservice.hasProduct" color="buttoncolor">
+          {{productservice.userOrder.orderset.length}}
         </div>
         <ion-icon class="fa fa-shopping-cart"></ion-icon>
       </button>
@@ -16,38 +16,37 @@
 </ion-header>
 <!---->
 <ion-content style="text-align: right">
-  <ion-searchbar
-    [(ngModel)]="myInput"
-    [showCancelButton]="shouldShowCancel"
-    (ionInput)="searchItems($event)"
-    (ionCancel)="onCancel($event)"
-    cancelButtonText="لغو"
-    cancelButtonText="جست و جو">
-  </ion-searchbar>
-      <ion-card *ngFor="let item of items;let i = index;">
-        <ion-row>
-          <ion-col>
-            <ion-thumbnail item-start>
-              <img src="{{item.fileSource}}"/>
-            </ion-thumbnail>
-          </ion-col>
-          <ion-col>
-            <h4 class="text-center">{{item.title}}</h4>
-            <ion-row *ngFor="let properties of item.properties">
-              <ion-col>
-                {{properties.value}}
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col>
-            <div>{{item.cost}} تومان</div>
-            تعداد          <input type="text" class="cnt" [(ngModel)]="item.qty" style="width: 20px;"/>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <button ion-button full (click)="itemTapped($event,item)">اضافه به سبد خرید</button>
-          </ion-col>
-        </ion-row>
-      </ion-card>
+  <div *ngFor="let item of items;let i = index;">
+    <ion-row>
+      <ion-col col-6>
+        <div style="padding-right: 20px;">
+          <img src="{{item.fileSource}}" />
+          <div *ngIf="item.discountCondition != null && item.discountCondition!=0" class="watermark">
+            <div style="padding: 0.5px">
+              {{item.discount}} تخفیف<br />
+              {{item.discountCondition}} +
+            </div>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col col-5>
+        <br />
+        <table style="text-align:left;padding-top: 18px;width:100%">
+          <tr>
+            <td>
+              <font style="color:gray"><b>{{item.title}}</b></font>
+            </td>
+          </tr>
+          <tr *ngFor="let properties of item.properties">
+            <td>
+              {{properties.value}}
+            </td>
+          </tr>
+        </table>
+      </ion-col>
+    </ion-row>
+    <button ion-button full (click)="itemTapped($event,item)" color="buttoncolor">
+      <ion-icon class="fa fa-shopping-cart"></ion-icon>{{item.cost}} تومان
+    </button>
+  </div>
 </ion-content>

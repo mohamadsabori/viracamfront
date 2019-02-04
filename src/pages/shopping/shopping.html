@@ -22,39 +22,73 @@
 
 
 <ion-content>
-  <script id='payir-trust-script' src='https://pay.ir/js/trust-logo.js' data-id='91312'></script>
-  <h2 class="bg-grey">
-    <span class="pull-right">جمع کل خرید</span>
-    <span class="pull-left">{{newOrder.totalFactor}} تومان</span>
-  </h2>
-  <ion-card *ngFor="let item of newOrder.orderset">
-    <ion-row>
-      <ion-col>
-        <ion-thumbnail item-start>
-          <img src="{{ item.product.productImages.length !=0 ? 'http://176.31.82.40:8080/ViraCamServer/product/files?id=' + item.product.id +
-          '&filename=' + item.product.productImages[0].filename : '' }}"/>
-        </ion-thumbnail>
+  <!-- <script id='payir-trust-script' src='https://pay.ir/js/trust-logo.js' data-id='91312'></script> -->
+  <!-- <h2 class="bg-grey">
+    <span class="pull-right">جمع کل </span>
+    <span class="pull-left"></span>
+  </h2> -->
+  <table style="width: 100%;">
+    <thead>
+      <th style="text-align: center">حذف</th>
+      <th style="text-align: center">عنوان</th>
+      <th style="text-align: center">تعداد</th>
+      <th style="text-align: center">قیمت</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of newOrder.orderset">
+        <td><i class="fa fa-trash" aria-hidden="true"></i></td>
+
+          <!-- <button ion-button icon-only (click)="removeThis(item.id)">
+            <ion-icon class="fa fa-trash"></ion-icon>
+          </button> -->
+        <td>
+          <h4 class="text-center">{{item.product.name}}</h4>
+        </td>
+        <td><input type="text" class="cnt" [(ngModel)]="item.qty" style="width: 20px;" /></td>
+        <td>
+          <table>
+            <tr>
+                <td></td><td>{{item.totalPrice}} تومان</td>
+            </tr>
+            <tr>
+              <td>تخفیف</td><td>{{item.disCount}}</td>
+            </tr>
+          </table>
+          </td>
+      </tr>
+        <tr>
+          <td colspan="3" style="text-align: left">مبلغ قابل پرداخت</td>
+          <td>{{newOrder.totalFactor}} تومان</td>
+        </tr>
+    </tbody>
+  </table>
+  <button *ngIf="newOrder.orderStatus == null ? true : newOrder.orderStatus.code !=payedId" ion-button full (click)="payThis()">خرید خود را نهایی کنید</button>
+</ion-content>
+  <!-- <ion-row style="padding: 0px 20px 0px 0px;">
+      <ion-col col-3>حذف</ion-col>
+      <ion-col col-3>عنوان</ion-col>
+      <ion-col col-2>تعداد</ion-col>
+      <ion-col col-3>قیمت</ion-col>
+  </ion-row>
+    <ion-row style="border-bottom: 1px;padding: 0px 20px 0px 0px;" >
+      <ion-col col-3>
+        <button ion-button icon-only (click)="removeThis(item.id)">
+          <ion-icon class="fa fa-trash"></ion-icon>
+        </button>
       </ion-col>
-      <ion-col>
+      <ion-col col-3>
         <h4 class="text-center">{{item.product.name}}</h4>
+      </ion-col>
+      <ion-col col-2><input type="text" class="cnt" [(ngModel)]="item.qty" style="width: 20px;"/></ion-col>
+      <ion-col col-3>{{item.totalPrice}} تومان</ion-col>
+      <ion-col col-1>
         <ion-row *ngFor="let properties of item.product.properties">
           <ion-col>
             {{properties.value}}
           </ion-col>
         </ion-row>
-      </ion-col>
-      <ion-col>
-        <h4>{{item.totalPrice}} تومان</h4>
- تعداد          <input type="text" class="cnt" [(ngModel)]="item.qty" style="width: 20px;"/>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <button ion-button full (click)="removeThis(item.id)">حذف</button>
-      </ion-col>
-    </ion-row>
-  </ion-card>
-  <button ion-button full (click)="payThis()">خرید خود را نهایی کنید</button>
+      </ion-col> 
+    </ion-row>-->
   <!--<div class="container">
     <div class="row product">
       <div class="product-details" *ngFor="let item of newOrder.orderset">
@@ -84,9 +118,8 @@
       </div>
     </div>
   </div>-->
-  <ion-footer>
+  <!-- <ion-footer>
     <ion-toolbar>
       <ion-title>خرید خود را نهایی کنید</ion-title>
     </ion-toolbar>
-  </ion-footer>
-</ion-content>
+  </ion-footer> -->

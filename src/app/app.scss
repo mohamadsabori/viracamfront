@@ -39,6 +39,7 @@ $active-color: #3D9BDD;
 $font-color: #222;
 $background-light-color: linear-gradient(135deg, rgba(76, 179, 133, 1) 15%, rgba(23, 142, 79, 1)100%);
 $background-dark-color: #3D9BDD;
+$font-family-base: "BYekan", BYekan !default;
 
 // Single option
 // ------------------
@@ -50,4 +51,10 @@ ion-item.item.item-block.option {
     color: $active-color;
     font-weight: 700;
   }
+}
+ion-app.md {
+  font-family:BYekan;
+}
+.label{
+  color: #222 !important;  
 }

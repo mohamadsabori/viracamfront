@@ -1,3 +1,17 @@
+.watermark {
+  opacity: 0.95;
+  //color: #be4041;
+  color: white;
+  position: absolute;
+  top:10%;
+  margin-top:-10px;
+  margin-right:10px;
+  text-align: center;
+  border-radius: 50px 20px;
+  border: 2px solid #f06856;
+  background-color: #f06856;
+  font-size:x-small;
+}
 page-list {
   .product-items{
     text-align:center;
@@ -40,8 +54,9 @@ page-list {
   .product-title{
     font-size:medium;
     font-weight:bold;
-    color:#1286ad;
+    color:#2286ad;
     margin-top:1px;
+    margin-right:1p;
     margin-bottom:1px;
   }
   .price-title{
@@ -56,6 +71,7 @@ page-list {
     width:70px;
     height:70px;margin-left:1px;
     margin-top:40px;
+    margin-right:40p;
   }
   .product-info{
     width:53%;

@@ -19,37 +19,50 @@
         <ion-icon class="fa fa-shopping-cart"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>سفارشات</ion-title>
   </ion-toolbar>
 
 </ion-header>
 
 
-<ion-content padding>
-  <div class="container-fluid" dir="rtl" style="margin:0; padding:0;">
-    <table class="table table-responsive table-striped">
-      <thead>
-      <tr>
-        <th>تاریخ</th>
-        <th>شماره فاکتور</th>
-        <th>جزئیات</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let order of orders">
-        <td>
-          {{order.orderDate}}
-        </td>
-        <td>
-          {{order.orderSerial}}
-        </td>
-        <td>
-		<button ion-button icon-only (click)="openFactorDetails(order)">
-			<ion-icon class="fa fa-receipt"></ion-icon>
-		</button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+<ion-content >
+  <div class="bg-grey">
+    <span class="pull-right">سابقه سفارشات</span>
   </div>
+  <table width="100%">
+    <thead>
+    <th style="text-align: center">تاریخ</th>
+    <th style="text-align: center">شماره فاکتور</th>
+    <th style="text-align: center">وضعیت</th>
+    <th style="text-align: center">جزئیات</th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of orders">
+      <td>{{order.orderDate}}</td>
+      <td>{{order.orderSerial}}</td>
+      <td>{{order.orderStatus == null ? '' : order.orderStatus.value}}</td>
+      <td><button ion-button icon-only (click)="openFactorDetails(order)">
+        <ion-icon class="fa fa-receipt"></ion-icon>
+      </button></td>
+    </tr>
+    </tbody>
+  </table>
+  <!--<ion-row color="buttoncolor">
+    <ion-col></ion-col>
+    <ion-col></ion-col>
+    <ion-col></ion-col>
+  </ion-row>-->
+
+<!--<ion-row *ngFor="let order of orders">
+  <ion-col>
+      {{order.orderDate}}
+  </ion-col>
+  <ion-col>
+      {{order.orderSerial}}
+  </ion-col>
+  <ion-col>
+      <button ion-button icon-only (click)="openFactorDetails(order)">
+          <ion-icon class="fa fa-receipt"></ion-icon>
+        </button>
+  </ion-col>
+</ion-row>-->
   </ion-content>

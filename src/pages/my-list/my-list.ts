@@ -4,6 +4,7 @@ import {Storage} from '@ionic/storage';
 import {ProductserviceProvider} from "../../providers/productservice/productservice";
 import {UserOrder} from "../../model/UserOrder";
 import {ShoppingPage} from "../shopping/shopping";
+import {AddorderPage} from "../addorder/addorder";
 
 /**
  * Generated class for the MyListPage page.
@@ -38,7 +39,9 @@ export class MyListPage {
   }
 
   openFactorDetails(userOrder: UserOrder) {
-    this.navCtrl.push(ShoppingPage, {"item": userOrder});
+    this.service.hasProduct = false;
+    this.service.userOrder = userOrder;
+    this.navCtrl.push(AddorderPage);
   }
 
 }

@@ -3,8 +3,8 @@ import {AlertController, IonicPage, NavController, NavParams, Platform} from 'io
 import {UserOrder} from "../../model/UserOrder";
 import {ProductserviceProvider} from "../../providers/productservice/productservice";
 import { InAppBrowser } from 'ionic-native';
-
-
+import {HomePage} from "../home/home";
+import {Categories} from "../../model/Categories";
 /**
  * Generated class for the ShoppingPage page.
  *
@@ -20,7 +20,7 @@ import { InAppBrowser } from 'ionic-native';
 export class ShoppingPage {
 
   newOrder: UserOrder;
-
+  payedId: string = Categories.ORDER_PAIED;
   constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController
     , private service: ProductserviceProvider, private platform: Platform) {
     this.newOrder = this.navParams.get("item");
@@ -33,10 +33,16 @@ export class ShoppingPage {
 
   payThis(){
     this.platform.ready().then(() => {
-      let browser = new InAppBrowser("http://viracam.com/paymentgateway/send.php?amount="
-        + this.newOrder.totalFactor + "&mobile=" + this.newOrder.userPhoneNumber
-        + "&factorNumber=" + this.newOrder.id + "&description=فاکتور خرید از ویراکم",'_blank');
-
+      // this.service.payThis(this.newOrder);
+      let browser = new InAppBrowser("http://viracam.com/paymentgateway/new/send.php?amount="
+        + (this.newOrder.totalFactor) + "&mobile=" + this.newOrder.userPhoneNumber
+        + "&factorNumber=" + this.newOrder.id 
+        + "&itemId=" + this.newOrder.id
+        + "&description" +
+        "=فاکتور خرید از ویراکم بابت فاکتور " + this.newOrder.orderSerial + " تاریخ " + this.newOrder.orderDate
+        + " جناب آقای/خانم " + this.newOrder.userFullName + " شماره تلفن " + this.newOrder.userPhoneNumber
+        ,'_blank');
+        this.navCtrl.setRoot(HomePage);
     });
   }
 

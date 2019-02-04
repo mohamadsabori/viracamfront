@@ -1,5 +1,11 @@
 {
   "name": "vira",
+  "proxies": [
+    {
+      "path": "/ViraCamServer",
+      "proxyUrl": "http://localhost:8080/ViraCamServer"
+    }
+  ],
   "integrations": {
     "cordova": {}
   },

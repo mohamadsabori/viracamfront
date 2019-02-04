@@ -11,8 +11,12 @@ export class ProductOrder{
   qty : number;
   totalPrice : number;
   fileSource : String;
+  disCount : number;
+  refID : string;
+  orderPayTime : string;
+  orderPayDate : string;
 
-  constructor(id: number, product: Product, user: SystemUsers, orderDate: String, orderTime: String, orderStatus: Category, qty : number, totalPrice : number, fileSource : String) {
+  constructor(id: number, product: Product, user: SystemUsers, orderDate: String, orderTime: String, orderStatus: Category, qty : number, totalPrice : number, fileSource : String, disCount : number, refID : string) {
     this.id = id;
     this.product = product;
     this.user = user;
@@ -22,5 +26,7 @@ export class ProductOrder{
     this.qty = qty;
     this.totalPrice = totalPrice;
     this.fileSource = fileSource;
+    this.disCount = disCount;
+    this.refID = refID;
   }
 }

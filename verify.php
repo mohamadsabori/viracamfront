@@ -7,7 +7,7 @@ $result = json_decode(verify($api,$token));
 if(isset($result->status)){
 	if($result->status == 1){
 		echo "<h1>تراکنش با موفقیت انجام شد</h1>";
-		updateItemStatus($_GET['itemId'])
+//		updateItemStatus($_GET['itemId'])
 	} else {
 		echo "<h1>تراکنش با خطا مواجه شد</h1>";
 	}
