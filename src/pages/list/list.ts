@@ -118,15 +118,30 @@ export class ListPage {
     // this.items[i].totalPrice = this.items[i].qty * this.items[i].cost;
   }
 
-  searchItems(event){
+  searchItems(event : any){
     let val = event.target.value;
-    if (val && val.trim() != '') {
-      this.items = this.items.filter((item) => {
-        return (item.title.toLowerCase().indexOf(val.toLowerCase()) > -1
-        || item.properties.filter((property) => {
-          return (property.value.toLocaleLowerCase().indexOf(val.toLowerCase())) > -1
-          }));
-      })
-    }
+      if (val && val.trim() != '') {
+        this.items = this.items.filter((item) => {
+            return (item.title.toLowerCase().indexOf(val.toLowerCase()) > -1
+            // || item.properties.filter((property) => {
+              // (property.value.toLowerCase().indexOf(val.toLowerCase())) > -1
+              // }
+          // )
+          )
+        });
+      }else{
+        this.initializeItems();
+      }
+    if(true) return;
+    // let val = event.target.value;
+    // if (val && val.trim() != '') {
+    //   this.items = this.items.filter((item) => {
+    //     return (item.title.toLowerCase().indexOf(val.toLowerCase()) > -1
+    //     || item.properties.filter((property) => {
+    //       return (property.value.toLocaleLowerCase().indexOf(val.toLowerCase())) > -1
+    //       }));
+    //   });
+    //   console.log('items.length\t' + this.items.length);
+    // }
   }
 }

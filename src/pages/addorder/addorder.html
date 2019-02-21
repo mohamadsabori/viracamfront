@@ -60,13 +60,13 @@
       <ion-option *ngFor="let method of shippingMethod" [value]="method.id">{{method.value}}</ion-option>
     </ion-select>
   </ion-item>
-  <ion-item>
+  <ion-item *ngIf="service.userOrder.shippingMethod.id == 3">
     <ion-label fixed>نام باربری/ترمینال</ion-label>
     <ion-textarea type="text" [(ngModel)]="service.userOrder.shippingMethodDetails"></ion-textarea>
   </ion-item>
   <ion-item>
-      <button ion-button full (click)="payOrder()">پرداخت</button>
-    <button ion-button full (click)="addOrder()">ثبت پیش فاکتور</button>
+      <button ion-button full (click)="payOrder()"  color="buttoncolor">پرداخت</button>
+    <button ion-button full (click)="addOrder()" color="buttoncolor">ثبت پیش فاکتور</button>
   </ion-item>
   </ion-list>
   <button *ngIf="(service.userOrder.orderStatus == null ? true : service.userOrder.orderStatus.code !=payedId) && service.userOrder.orderset.length > 0" ion-button full (click)="showCustomerInfo()" >خرید خود را نهایی کنید</button>

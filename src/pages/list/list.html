@@ -1,9 +1,6 @@
 <ion-header>
   <ion-navbar>
     <ion-buttons end>
-      <button ion-button icon-only>
-        <ion-icon class="fa fa-search"></ion-icon>
-      </button>
       <button ion-button icon-only (click)="finishingCart()">
         <div *ngIf="productservice.hasProduct" color="buttoncolor">
           {{productservice.userOrder.orderset.length}}
@@ -11,8 +8,10 @@
         <ion-icon class="fa fa-shopping-cart"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title></ion-title>
   </ion-navbar>
+  <ion-toolbar>
+  <ion-searchbar (ionInput)="searchItems($event)"></ion-searchbar>
+</ion-toolbar>
 </ion-header>
 <!---->
 <ion-content style="text-align: right">
