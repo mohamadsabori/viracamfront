@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams, ToastController} from 'ionic-angular';
 import {ProductserviceProvider} from "../../providers/productservice/productservice";
 import {AddorderPage} from "../addorder/addorder";
 import {ProductProperties} from "../../model/ProductProperties";
@@ -16,7 +16,7 @@ export class ListPage {
   items: Array< ProductItem >;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private productservice: ProductserviceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private productservice: ProductserviceProvider, private toastCtrl: ToastController) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedCategory = navParams.get('selectedCategory');
 
@@ -70,6 +70,12 @@ export class ListPage {
   }
 
   itemTapped(event, item) {
+    let toast = this.toastCtrl.create({
+      message: '    به سبد خرید اضافه شد  ',
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
     this.productservice.itemTapped(item);
     /*item.totalPrice = 1 * item.cost;
     var founded: boolean;

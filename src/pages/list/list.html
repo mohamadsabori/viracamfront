@@ -33,11 +33,11 @@
         <table style="text-align:left;padding-top: 18px;width:100%">
           <tr>
             <td>
-              <font style="color:gray"><b>{{item.title}}</b></font>
+              <font style="color:gray;font-family: serif;font-size: large;"><b>{{item.title}}</b></font>
             </td>
           </tr>
           <tr *ngFor="let properties of item.properties">
-            <td>
+            <td style="font-family: fantasy;">
               {{properties.value}}
             </td>
           </tr>

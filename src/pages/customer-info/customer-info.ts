@@ -49,7 +49,6 @@ export class CustomerInfoPage {
       position: 'top'
     });
     toast.present();
-    this.navCtrl.setRoot(HomePage);
   }
 
 }

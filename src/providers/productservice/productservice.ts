@@ -31,7 +31,7 @@ export class ProductserviceProvider {
   currentUser: { userPhoneNumber: "" };
 
   constructor(private http: Http, private storage: Storage) {
-  
+
   }
 
   addUserOrder() {
@@ -208,5 +208,9 @@ export class ProductserviceProvider {
     for (var i = 0; i < this.userOrder.orderset.length; i++) {
       this.userOrder.totalFactor += this.userOrder.orderset[i].totalPrice - this.userOrder.orderset[i].disCount;
     }
+  }
+
+  addUser(systemUsers: SystemUsers){
+    return this.http.post(this.baseUrl + '/users/adduser', systemUsers);
   }
 }

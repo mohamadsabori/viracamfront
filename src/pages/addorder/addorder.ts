@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, ToastController, Platform} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ToastController, Platform, AlertController} from 'ionic-angular';
 import {ProductserviceProvider} from "../../providers/productservice/productservice";
 import {Storage} from '@ionic/storage';
 import {ShippingMethod} from "../../model/ShippingMethod";
@@ -30,8 +30,8 @@ export class AddorderPage {
   payedId: string = Categories.ORDER_PAIED;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private service: ProductserviceProvider, private storage: Storage
-	, private toastCtrl: ToastController, private platform: Platform) {
-    console.log(this.service.userOrder);
+	, private toastCtrl: ToastController, private platform: Platform
+  ,public alertController: AlertController) {
     service.loadAllshippingMethods().subscribe(data => {
       this.shippingMethod = data.json();
     }, error => {
@@ -61,8 +61,24 @@ export class AddorderPage {
   ionViewDidLoad() {
   }
 
-  deleteThisRow(key: any){
-    this.service.deleteThisRow(key);
+  async deleteThisRow(key: any) {
+    const alert = await this.alertController.create({
+      message: 'مایل به حذف این ردیف هستید',
+      buttons: [
+        {
+          text: 'خیر',
+          role: 'cancel',
+          cssClass: 'secondary'
+        }, {
+          text: 'باشه',
+          handler: () => {
+            this.service.deleteThisRow(key);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   setOrderTotalPrice(i: any) {

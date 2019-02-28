@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import {Storage} from '@ionic/storage';
 import {LoginPage} from "../login/login";
+import {ProductserviceProvider} from "../../providers/productservice/productservice";
+import {SystemUsers} from '../../model/SystemUsers';
 
 /**
  * Generated class for the RegistrationPage page.
@@ -19,8 +21,10 @@ export class RegistrationPage {
   mobile: string;
   password: string;
   repeatePassword: string;
+  systemUsers: SystemUsers;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, private toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams
+    , private storage: Storage, private toastCtrl: ToastController, private productservice: ProductserviceProvider) {
   }
 
   ionViewDidLoad() {

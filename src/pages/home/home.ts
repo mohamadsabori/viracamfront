@@ -18,6 +18,7 @@ export class HomePage {
   private radioId: any;
   private connectorId: any;
   private securityId: any;
+  private learningId: any;
 
   constructor(public navCtrl: NavController, private service: ProductserviceProvider) {
     this.service.loadAllProductTypes().subscribe(data => {
@@ -40,6 +41,10 @@ export class HomePage {
         if(data.json()[i].code === 'Security'){
           this.securityId = data.json()[i].id;
         }
+        if(data.json()[i].code === 'Learning'){
+          this.learningId = data.json()[i].id;
+        }
+
       }
     }, error => {
       this.value = error;
