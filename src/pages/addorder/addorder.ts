@@ -70,7 +70,7 @@ export class AddorderPage {
           role: 'cancel',
           cssClass: 'secondary'
         }, {
-          text: 'باشه',
+          text: 'بله',
           handler: () => {
             this.service.deleteThisRow(key);
           }
