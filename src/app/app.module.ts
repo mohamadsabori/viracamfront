@@ -22,6 +22,7 @@ import {ProductserviceProvider} from "../providers/productservice/productservice
 import {HttpModule} from "@angular/http";
 import {LoginPage} from "../pages/login/login";
 import {RegistrationPage} from "../pages/registration/registration";
+import {AboutPage} from "../pages/about/about";
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {RegistrationPage} from "../pages/registration/registration";
     MyListPage,
     ShoppingPage,
     LoginPage,
-    RegistrationPage
+    RegistrationPage,
+    AboutPage
   ],
   imports: [
     HttpModule,
@@ -63,7 +65,8 @@ import {RegistrationPage} from "../pages/registration/registration";
     MyListPage,
     ShoppingPage,
     LoginPage,
-    RegistrationPage
+    RegistrationPage,
+    AboutPage
   ],
   providers: [
     StatusBar,

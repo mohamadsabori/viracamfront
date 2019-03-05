@@ -10,6 +10,7 @@ import {SideMenuSettings} from "../shared/side-menu-content/models/side-menu-set
 import {CustomerInfoPage} from "../pages/customer-info/customer-info";
 import {MyListPage} from "../pages/my-list/my-list";
 import {LoginPage} from "../pages/login/login";
+import {AboutPage} from "../pages/about/about";
 @Component({
   templateUrl: 'app.html'
 })
@@ -29,31 +30,41 @@ export class MyApp {
     , private menuCtrl: MenuController
     , private alertCtrl: AlertController) {
     this.initializeApp();
-    this.service.loadAllProductTypes().subscribe(data => {
-      this.options = new Array<MenuOptionModel>();
-      let productTypes: Array<MenuOptionModel> = [];
-      for (let i = 0; i < data.json().length; i++) {
-        productTypes.push({iconName: '', displayName: data.json()[i]['categoryName'], component: ListPage, parameter: data.json()[i]['id']})
-      }
-      this.options.push({
-          displayName: 'محصولات',
-          subItems: productTypes}
-        , {displayName: 'صفحه اصلی', component: HomePage}
-        , {displayName: 'سفارش های من', component: MyListPage}
-        , {displayName: 'اطلاعات من', component: CustomerInfoPage}
-        // , {displayName: 'اطلاعات من', component: MyinfoPage}
-      );
-    }, error => {
-      console.log(error);
-    });
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.service.loadAllProductTypes().subscribe(data => {
+        this.options = new Array<MenuOptionModel>();
+        let productTypes: Array<MenuOptionModel> = [];
+        for (let i = 0; i < data.json().length; i++) {
+          productTypes.push({iconName: '', displayName: data.json()[i]['categoryName'], component: ListPage, parameter: data.json()[i]['id']})
+        }
+        this.options.push({
+            displayName: 'محصولات',
+            subItems: productTypes}
+          , {displayName: 'صفحه اصلی', component: HomePage}
+          , {displayName: 'سفارش های من', component: MyListPage}
+          , {displayName: 'اطلاعات من', component: CustomerInfoPage}
+          , {displayName: 'تماس با ما', component: AboutPage}
+          // , {displayName: 'اطلاعات من', component: MyinfoPage}
+        );
+      }, error => {
+        this.alertCtrl.create({
+          message: 'اتصال به اینترنت را بررسی کنید',
+          buttons: [
+            {
+              text: 'باشه',
+              handler: () => {
+                this.initializeApp();
+              }
+            }
+          ]
+        });
+
+      });
     });
   }
 
