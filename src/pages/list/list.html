@@ -44,8 +44,15 @@
         </table>
       </ion-col>
     </ion-row>
-    <button ion-button full (click)="itemTapped($event,item)" color="buttoncolor">
-      <ion-icon class="fa fa-shopping-cart"></ion-icon>{{item.cost}} تومان
-    </button>
+    <div *ngIf="item.cost == null || item.cost == '' || item.cost == 0">
+      <button ion-button full color="buttoncolor">
+        <ion-icon class="fa fa-shopping-cart"></ion-icon> تماس بگیرید
+      </button>
+    </div>
+    <div *ngIf="item.cost != null && item.cost != '' && item.cost != 0">
+      <button ion-button full (click)="itemTapped($event,item)" color="buttoncolor">
+        <ion-icon class="fa fa-shopping-cart"></ion-icon>{{item.cost}} تومان
+      </button>
+    </div>
   </div>
 </ion-content>
