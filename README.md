@@ -1,3 +1,5 @@
+A solution for the sale of digital goods that includes a web application for managing information and customers and a mobile application for the use of customers and the possibility of registering purchase and payment requests and order tracking.
+
 This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
 
 ## How to use this template
